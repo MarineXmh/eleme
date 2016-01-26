@@ -9,10 +9,13 @@
 /* Begin PBXBuildFile section */
 		8A27F6B61C570EE0002E5876 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A27F6B51C570EE0002E5876 /* main.m */; };
 		8A27F6B91C570EE0002E5876 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A27F6B81C570EE0002E5876 /* AppDelegate.m */; };
-		8A27F6BC1C570EE0002E5876 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A27F6BB1C570EE0002E5876 /* ViewController.m */; };
-		8A27F6BF1C570EE0002E5876 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8A27F6BD1C570EE0002E5876 /* Main.storyboard */; };
 		8A27F6C11C570EE0002E5876 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8A27F6C01C570EE0002E5876 /* Assets.xcassets */; };
-		8A27F6C41C570EE0002E5876 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8A27F6C21C570EE0002E5876 /* LaunchScreen.storyboard */; };
+		8A27F6CD1C570FD5002E5876 /* MainController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A27F6CC1C570FD5002E5876 /* MainController.m */; };
+		8A27F6D01C5719A6002E5876 /* SelectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A27F6CF1C5719A6002E5876 /* SelectionView.m */; };
+		8A27F6D31C572598002E5876 /* Food.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A27F6D21C572598002E5876 /* Food.m */; };
+		8A27F6D61C57261D002E5876 /* FoodCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A27F6D51C57261D002E5876 /* FoodCell.m */; };
+		8A27F6DC1C5747C4002E5876 /* CartView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A27F6DB1C5747C4002E5876 /* CartView.m */; };
+		8A27F6DF1C575C82002E5876 /* IndexCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A27F6DE1C575C81002E5876 /* IndexCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,12 +23,20 @@
 		8A27F6B51C570EE0002E5876 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		8A27F6B71C570EE0002E5876 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		8A27F6B81C570EE0002E5876 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		8A27F6BA1C570EE0002E5876 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		8A27F6BB1C570EE0002E5876 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		8A27F6BE1C570EE0002E5876 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8A27F6C01C570EE0002E5876 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		8A27F6C31C570EE0002E5876 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8A27F6C51C570EE0002E5876 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8A27F6CB1C570FD5002E5876 /* MainController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainController.h; sourceTree = "<group>"; };
+		8A27F6CC1C570FD5002E5876 /* MainController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainController.m; sourceTree = "<group>"; };
+		8A27F6CE1C5719A6002E5876 /* SelectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectionView.h; sourceTree = "<group>"; };
+		8A27F6CF1C5719A6002E5876 /* SelectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectionView.m; sourceTree = "<group>"; };
+		8A27F6D11C572598002E5876 /* Food.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Food.h; sourceTree = "<group>"; };
+		8A27F6D21C572598002E5876 /* Food.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Food.m; sourceTree = "<group>"; };
+		8A27F6D41C57261D002E5876 /* FoodCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FoodCell.h; sourceTree = "<group>"; };
+		8A27F6D51C57261D002E5876 /* FoodCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FoodCell.m; sourceTree = "<group>"; };
+		8A27F6DA1C5747C4002E5876 /* CartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CartView.h; sourceTree = "<group>"; };
+		8A27F6DB1C5747C4002E5876 /* CartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CartView.m; sourceTree = "<group>"; };
+		8A27F6DD1C575C81002E5876 /* IndexCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IndexCell.h; sourceTree = "<group>"; };
+		8A27F6DE1C575C81002E5876 /* IndexCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IndexCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,12 +71,9 @@
 			children = (
 				8A27F6B71C570EE0002E5876 /* AppDelegate.h */,
 				8A27F6B81C570EE0002E5876 /* AppDelegate.m */,
-				8A27F6BA1C570EE0002E5876 /* ViewController.h */,
-				8A27F6BB1C570EE0002E5876 /* ViewController.m */,
-				8A27F6BD1C570EE0002E5876 /* Main.storyboard */,
-				8A27F6C01C570EE0002E5876 /* Assets.xcassets */,
-				8A27F6C21C570EE0002E5876 /* LaunchScreen.storyboard */,
-				8A27F6C51C570EE0002E5876 /* Info.plist */,
+				8A27F6D91C57263A002E5876 /* Model */,
+				8A27F6D81C572634002E5876 /* View */,
+				8A27F6D71C572626002E5876 /* Controller */,
 				8A27F6B41C570EE0002E5876 /* Supporting Files */,
 			);
 			path = eleme;
@@ -74,9 +82,44 @@
 		8A27F6B41C570EE0002E5876 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				8A27F6C01C570EE0002E5876 /* Assets.xcassets */,
+				8A27F6C51C570EE0002E5876 /* Info.plist */,
 				8A27F6B51C570EE0002E5876 /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		8A27F6D71C572626002E5876 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				8A27F6CB1C570FD5002E5876 /* MainController.h */,
+				8A27F6CC1C570FD5002E5876 /* MainController.m */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		8A27F6D81C572634002E5876 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				8A27F6CE1C5719A6002E5876 /* SelectionView.h */,
+				8A27F6CF1C5719A6002E5876 /* SelectionView.m */,
+				8A27F6D41C57261D002E5876 /* FoodCell.h */,
+				8A27F6D51C57261D002E5876 /* FoodCell.m */,
+				8A27F6DA1C5747C4002E5876 /* CartView.h */,
+				8A27F6DB1C5747C4002E5876 /* CartView.m */,
+				8A27F6DD1C575C81002E5876 /* IndexCell.h */,
+				8A27F6DE1C575C81002E5876 /* IndexCell.m */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		8A27F6D91C57263A002E5876 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				8A27F6D11C572598002E5876 /* Food.h */,
+				8A27F6D21C572598002E5876 /* Food.m */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -110,6 +153,7 @@
 				TargetAttributes = {
 					8A27F6B01C570EE0002E5876 = {
 						CreatedOnToolsVersion = 7.2;
+						DevelopmentTeam = 9342Q5J8DX;
 					};
 				};
 			};
@@ -136,9 +180,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8A27F6C41C570EE0002E5876 /* LaunchScreen.storyboard in Resources */,
 				8A27F6C11C570EE0002E5876 /* Assets.xcassets in Resources */,
-				8A27F6BF1C570EE0002E5876 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -149,32 +191,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8A27F6BC1C570EE0002E5876 /* ViewController.m in Sources */,
+				8A27F6DC1C5747C4002E5876 /* CartView.m in Sources */,
+				8A27F6D31C572598002E5876 /* Food.m in Sources */,
+				8A27F6D61C57261D002E5876 /* FoodCell.m in Sources */,
 				8A27F6B91C570EE0002E5876 /* AppDelegate.m in Sources */,
+				8A27F6CD1C570FD5002E5876 /* MainController.m in Sources */,
 				8A27F6B61C570EE0002E5876 /* main.m in Sources */,
+				8A27F6DF1C575C82002E5876 /* IndexCell.m in Sources */,
+				8A27F6D01C5719A6002E5876 /* SelectionView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXVariantGroup section */
-		8A27F6BD1C570EE0002E5876 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				8A27F6BE1C570EE0002E5876 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		8A27F6C21C570EE0002E5876 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				8A27F6C31C570EE0002E5876 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		8A27F6C61C570EE0002E5876 /* Debug */ = {
@@ -261,7 +289,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = eleme/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Xu-Menghua.eleme";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -272,7 +302,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = eleme/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Xu-Menghua.eleme";
 				PRODUCT_NAME = "$(TARGET_NAME)";
