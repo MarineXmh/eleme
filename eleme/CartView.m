@@ -15,9 +15,12 @@
     if (self) {
         [self setBackgroundColor:[UIColor darkGrayColor]];
         
-        _cartImageView = [[UIImageView alloc] initWithFrame:CGRectMake(8, 5, 40, 40)];
-        _cartImageView.image = [UIImage imageNamed:@"e_no_cart"];
-        [self addSubview:_cartImageView];
+        _cartButton = [UIButton buttonWithType:UIButtonTypeSystem];
+        _cartButton.frame = CGRectMake(8, 5, 40, 40);
+        [_cartButton setImage:[UIImage imageNamed:@"e_no_cart"] forState:UIControlStateNormal];
+        [_cartButton setTintColor:[UIColor whiteColor]];
+        [_cartButton addTarget:self action:@selector(cartButtonClick:) forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:_cartButton];
         
         _cartNumberLabel = [[UILabel alloc] initWithFrame:CGRectMake(32, 6, 15, 15)];
         _cartNumberLabel.font = [UIFont systemFontOfSize:10.0];
@@ -53,6 +56,12 @@
     } else {
         self.cartNumberLabel.hidden = YES;
         self.checkOutButton.hidden = YES;
+    }
+}
+
+- (void)cartButtonClick:(UIButton *)button {
+    if ([self.delegate respondsToSelector:@selector(showCart)]) {
+        [self.delegate showCart];
     }
 }
 

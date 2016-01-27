@@ -7,18 +7,23 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CartListView.h"
+
+@class CartListView;
 
 @protocol CartViewDelegate <NSObject>
 
 - (void)checkOut;
+- (void)showCart;
 
 @end
 
 @interface CartView : UIView
 
-@property (nonatomic, strong) UIImageView *cartImageView;
+@property (nonatomic, strong) UIButton *cartButton;
 @property (nonatomic, strong) UIButton *checkOutButton;
 @property (nonatomic, strong) UILabel *cartNumberLabel;
+@property (nonatomic, strong) UIControl *backgroundView;
 @property (nonatomic, assign) int foodNumber;
 @property (nonatomic, weak) id<CartViewDelegate> delegate;
 

@@ -16,6 +16,8 @@
 		8A27F6D61C57261D002E5876 /* FoodCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A27F6D51C57261D002E5876 /* FoodCell.m */; };
 		8A27F6DC1C5747C4002E5876 /* CartView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A27F6DB1C5747C4002E5876 /* CartView.m */; };
 		8A27F6DF1C575C82002E5876 /* IndexCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A27F6DE1C575C81002E5876 /* IndexCell.m */; };
+		8A8EE22B1C585DE000F55C53 /* CartListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A8EE22A1C585DE000F55C53 /* CartListView.m */; };
+		8A8EE22E1C58657500F55C53 /* CartListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A8EE22D1C58657500F55C53 /* CartListCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +39,10 @@
 		8A27F6DB1C5747C4002E5876 /* CartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CartView.m; sourceTree = "<group>"; };
 		8A27F6DD1C575C81002E5876 /* IndexCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IndexCell.h; sourceTree = "<group>"; };
 		8A27F6DE1C575C81002E5876 /* IndexCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IndexCell.m; sourceTree = "<group>"; };
+		8A8EE2291C585DE000F55C53 /* CartListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CartListView.h; sourceTree = "<group>"; };
+		8A8EE22A1C585DE000F55C53 /* CartListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CartListView.m; sourceTree = "<group>"; };
+		8A8EE22C1C58657500F55C53 /* CartListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CartListCell.h; sourceTree = "<group>"; };
+		8A8EE22D1C58657500F55C53 /* CartListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CartListCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +115,10 @@
 				8A27F6DB1C5747C4002E5876 /* CartView.m */,
 				8A27F6DD1C575C81002E5876 /* IndexCell.h */,
 				8A27F6DE1C575C81002E5876 /* IndexCell.m */,
+				8A8EE2291C585DE000F55C53 /* CartListView.h */,
+				8A8EE22A1C585DE000F55C53 /* CartListView.m */,
+				8A8EE22C1C58657500F55C53 /* CartListCell.h */,
+				8A8EE22D1C58657500F55C53 /* CartListCell.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -194,8 +204,10 @@
 				8A27F6DC1C5747C4002E5876 /* CartView.m in Sources */,
 				8A27F6D31C572598002E5876 /* Food.m in Sources */,
 				8A27F6D61C57261D002E5876 /* FoodCell.m in Sources */,
+				8A8EE22E1C58657500F55C53 /* CartListCell.m in Sources */,
 				8A27F6B91C570EE0002E5876 /* AppDelegate.m in Sources */,
 				8A27F6CD1C570FD5002E5876 /* MainController.m in Sources */,
+				8A8EE22B1C585DE000F55C53 /* CartListView.m in Sources */,
 				8A27F6B61C570EE0002E5876 /* main.m in Sources */,
 				8A27F6DF1C575C82002E5876 /* IndexCell.m in Sources */,
 				8A27F6D01C5719A6002E5876 /* SelectionView.m in Sources */,
@@ -330,6 +342,7 @@
 				8A27F6CA1C570EE0002E5876 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -1,30 +1,29 @@
 //
-//  FoodCell.h
+//  CartListCell.h
 //  eleme
 //
-//  Created by Xu Menghua on 16/1/26.
+//  Created by Xu Menghua on 16/1/27.
 //  Copyright © 2016年 Xu Menghua. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
-@class FoodCell;
+@class CartListCell;
 
-@protocol FoodCellDelegate <NSObject>
+@protocol CartListCellDelegate <NSObject>
 
-- (void)addFood:(FoodCell *)cell;
-- (void)minusFood:(FoodCell *)cell;
+- (void)addFood:(CartListCell *)cell;
+- (void)minusFood:(CartListCell *)cell;
 
 @end
 
-@interface FoodCell : UITableViewCell
+@interface CartListCell : UITableViewCell
 
 @property (nonatomic, strong) UILabel *foodNameLabel;
-@property (nonatomic, strong) UIImageView *foodImageView;
 @property (nonatomic, strong) UIButton *addFoodButton;
 @property (nonatomic, strong) UILabel *foodNumberLabel;
 @property (nonatomic, strong) UIButton *minusFoodButton;
 @property (nonatomic, assign) int foodNumber;
-@property (nonatomic, weak) id<FoodCellDelegate> delegate;
+@property (nonatomic, weak) id<CartListCellDelegate> delegate;
 
 @end

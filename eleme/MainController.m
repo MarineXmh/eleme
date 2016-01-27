@@ -12,17 +12,22 @@
 #import "Food.h"
 #import "CartView.h"
 #import "IndexCell.h"
+#import "CartListView.h"
+#import "CartListCell.h"
 
-@interface MainController () <UITableViewDelegate, UITableViewDataSource, SelectionViewDelegate, FoodCellDelegate, CartViewDelegate, UIScrollViewDelegate>
+@interface MainController () <UITableViewDelegate, UITableViewDataSource, SelectionViewDelegate, FoodCellDelegate, CartViewDelegate, UIScrollViewDelegate, CartListViewDelegate, CartListCellDelegate>
 
 @property (nonatomic, strong) UITableView *indexTableView;
 @property (nonatomic, strong) UITableView *foodTableView;
 @property (nonatomic, strong) SelectionView *selectionView;
 @property (nonatomic, strong) CartView *cartView;
+@property (nonatomic, strong) CartListView *cartListView;
+@property (nonatomic, strong) UIControl *backgroundView;
 @property (nonatomic, assign) int cartTotalNumber;
 @property (nonatomic, strong) NSMutableArray *indexArray;
-@property (nonatomic, strong) NSMutableArray *sectionsArray;
 @property (nonatomic, strong) NSMutableArray *foodsArray;
+@property (nonatomic, strong) NSMutableDictionary *foodsInCartDictionary;
+@property (nonatomic, strong) NSMutableArray *foodsInCartArray;
 @property (nonatomic, assign) BOOL isScrollToBottom;
 @property (nonatomic, assign) double lastContentOffset;
 
@@ -35,8 +40,9 @@
     
     self.cartTotalNumber = 0;
     self.indexArray = [[NSMutableArray alloc] init];
-    self.sectionsArray = [[NSMutableArray alloc] init];
     self.foodsArray =[[NSMutableArray alloc] init];
+    self.foodsInCartDictionary = [[NSMutableDictionary alloc] init];
+    self.foodsInCartArray = [[NSMutableArray alloc] init];
     [self setNavgationBar];
     [self addTableView];
     [self makeData];
@@ -51,12 +57,12 @@
 - (void)makeData {
     self.indexArray = [NSMutableArray arrayWithArray:@[@"套餐", @"小吃", @"饮料"]];
     for (int j = 0; j < 3; j++) {
+        NSMutableArray *foodsArray = [[NSMutableArray alloc] init];
         for (int i = 0; i < 20; i++) {
-            [self.foodsArray addObject:[NSString stringWithFormat:@"食物%d", i] ];
+            [foodsArray addObject:[NSString stringWithFormat:@"食物%d", i] ];
         }
-        [self.sectionsArray addObject:self.foodsArray];
-        self.foodsArray= nil;
-        self.foodsArray = [[NSMutableArray alloc] init];
+        [self.foodsArray addObject:foodsArray];
+        foodsArray= nil;
     }
 }
 
@@ -93,14 +99,21 @@
     self.cartView = [[CartView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.view.frame) - 50, self.view.frame.size.width, 50)];
     self.cartView.delegate = self;
     [self.view addSubview:self.cartView];
+    
+    self.cartListView = [[CartListView alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height - self.cartView.frame.size.height, self.view.frame.size.width, 280)];
+    self.cartListView.hidden = YES;
+    self.cartListView.delegate = self;
+    self.cartListView.cartListTableView.dataSource = self;
+    self.cartListView.cartListTableView.delegate = self;
+    [self.view addSubview:self.cartListView];
 }
 
 #pragma mark - tableViewDatasourceAndDelegate
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    if (tableView == self.indexTableView) {
-        return 1;
+    if (tableView == self.foodTableView) {
+        return self.foodsArray.count;
     } else {
-        return self.sectionsArray.count;
+        return 1;
     }
 }
 
@@ -115,9 +128,11 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (tableView == self.indexTableView) {
         return self.indexArray.count;
-    } else {
-        NSArray *array = self.sectionsArray[section];
+    } else if (tableView == self.foodTableView) {
+        NSArray *array = self.foodsArray[section];
         return array.count;
+    } else {
+        return self.foodsInCartArray.count;
     }
 }
 
@@ -132,33 +147,49 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (tableView == self.foodTableView) {
         return 80;
-    } else {
+    } else if (tableView == self.indexTableView) {
         return 40;
+    } else {
+        return 50;
     }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *leftTableViewCellIdentifier = @"IndexCell";
-    static NSString *rightTableViewCellIdentifier = @"FoodCell";
+    static NSString *indexTableViewCellIdentifier = @"IndexCell";
+    static NSString *foodTableViewCellIdentifier = @"FoodCell";
+    static NSString *cartTableViewCellIdentifier = @"CartListCell";
     if (tableView == self.indexTableView) {
-        IndexCell *cell = [tableView dequeueReusableCellWithIdentifier:leftTableViewCellIdentifier];
+        IndexCell *cell = [tableView dequeueReusableCellWithIdentifier:indexTableViewCellIdentifier];
         
-        if (!cell) {
-            cell = [[IndexCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:leftTableViewCellIdentifier];
+        if (cell == nil) {
+            cell = [[IndexCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:indexTableViewCellIdentifier];
         }
         
         cell.nameLabel.text = self.indexArray[indexPath.row];
         
         return cell;
-    } else {
-        FoodCell *cell = [tableView dequeueReusableCellWithIdentifier:rightTableViewCellIdentifier];
+    } else if (tableView == self.foodTableView) {
+        FoodCell *cell = [tableView dequeueReusableCellWithIdentifier:foodTableViewCellIdentifier];
         
         if (cell == nil) {
-            cell = [[FoodCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:rightTableViewCellIdentifier];
+            cell = [[FoodCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:foodTableViewCellIdentifier];
         }
         
-        cell.foodNameLabel.text = [self.sectionsArray[indexPath.section] objectAtIndex:indexPath.row];
+        cell.foodNameLabel.text = [self.foodsArray[indexPath.section] objectAtIndex:indexPath.row];
+        cell.foodNumber = [[self.foodsInCartDictionary objectForKey:cell.foodNameLabel.text] intValue];
         cell.foodImageView.image = [UIImage imageNamed:@"food"];
+        cell.delegate = self;
+        
+        return cell;
+    } else {
+        CartListCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+        
+        if (cell == nil) {
+            cell = [[CartListCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cartTableViewCellIdentifier];
+        }
+        
+        cell.foodNameLabel.text = self.foodsInCartArray[indexPath.row];
+        cell.foodNumber = [[self.foodsInCartDictionary objectForKey:cell.foodNameLabel.text] intValue];
         cell.delegate = self;
         
         return cell;
@@ -207,19 +238,64 @@
 }
 
 #pragma mark - foodCellDelegate
-- (void)addFood {
+- (void)addFood:(FoodCell *)cell {
     self.cartTotalNumber++;
     self.cartView.foodNumber = self.cartTotalNumber;
+    [self.foodsInCartDictionary setObject:[NSNumber numberWithInt:cell.foodNumber] forKey:cell.foodNameLabel.text];
+    if (![self.foodsInCartArray containsObject:cell.foodNameLabel.text]) {
+        [self.foodsInCartArray addObject:cell.foodNameLabel.text];
+    }
+    [self.cartListView.cartListTableView reloadData];
+    [self.foodTableView reloadData];
 }
 
-- (void)minusFood {
+- (void)minusFood:(FoodCell *)cell {
     self.cartTotalNumber--;
     self.cartView.foodNumber = self.cartTotalNumber;
+    [self.foodsInCartDictionary setObject:[NSNumber numberWithInt:cell.foodNumber] forKey:cell.foodNameLabel.text];
+    if (cell.foodNumber <= 0) {
+        [self.foodsInCartArray removeObject:cell.foodNameLabel.text];
+    }
+    [self.cartListView.cartListTableView reloadData];
+    [self.foodTableView reloadData];
 }
 
 #pragma mark - cartViewDelegate
 - (void)checkOut {
     NSLog(@"check out");
+}
+
+- (void)showCart {
+    if (self.foodsInCartArray.count > 0) {
+        if (self.backgroundView == nil) {
+            self.backgroundView = [[UIControl alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - self.cartView.frame.size.height)];
+            [self.backgroundView setBackgroundColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0.0]];
+            [self.backgroundView addTarget:self action:@selector(backgroundClick:) forControlEvents:UIControlEventTouchUpInside];
+            [self.view addSubview:self.backgroundView];
+            [self.view bringSubviewToFront:self.cartListView];
+            [UIView animateWithDuration:0.3 animations:^{
+                self.cartListView.hidden = NO;
+                self.cartListView.frame = CGRectMake(0, self.view.frame.size.height - self.cartView.frame.size.height - 280, self.cartView.frame.size.width, 280);
+                [self.backgroundView setBackgroundColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0.5]];
+            }];
+        }
+    }
+}
+
+- (void)backgroundClick:(UIControl *)sender {
+    [UIView animateWithDuration:0.3 animations:^{
+        self.cartListView.frame = CGRectMake(0, self.view.frame.size.height - self.cartView.frame.size.height, self.cartView.frame.size.width, 280);
+        [self.backgroundView setBackgroundColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0.0]];
+        self.backgroundView = nil;
+    } completion:^(BOOL finished) {
+        self.cartListView.hidden = YES;
+        [sender removeFromSuperview];
+    }];
+}
+
+#pragma mark - cartListViewDelegate
+- (void)clearCart {
+    NSLog(@"clear cart");
 }
 
 @end

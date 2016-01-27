@@ -1,28 +1,25 @@
 //
-//  FoodCell.m
+//  CartListCell.m
 //  eleme
 //
-//  Created by Xu Menghua on 16/1/26.
+//  Created by Xu Menghua on 16/1/27.
 //  Copyright © 2016年 Xu Menghua. All rights reserved.
 //
 
-#import "FoodCell.h"
+#import "CartListCell.h"
 
-@implementation FoodCell
+@implementation CartListCell
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        _foodImageView = [[UIImageView alloc] initWithFrame:CGRectMake(8, 10, 60, 60)];
-        [self.contentView addSubview:_foodImageView];
-        
-        _foodNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(_foodImageView.frame) + 8, 25, self.contentView.frame.size.width - CGRectGetMaxX(_foodImageView.frame) - 8 * 2 , 30)];
+        _foodNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 10, self.contentView.frame.size.width - 150 , 30)];
         [_foodNameLabel setTextColor:[UIColor blackColor]];
         _foodNameLabel.font = [UIFont systemFontOfSize:16.0];
         [self.contentView addSubview:_foodNameLabel];
         
         _addFoodButton = [UIButton buttonWithType:UIButtonTypeSystem];
-        _addFoodButton.frame = CGRectMake(CGRectGetMaxX(self.contentView.frame) - 48, 30, 20, 20);
+        _addFoodButton.frame = CGRectMake(CGRectGetMaxX(self.contentView.frame), 15, 20, 20);
         [_addFoodButton setImage:[UIImage imageNamed:@"cart_add"] forState:UIControlStateNormal];
         [_addFoodButton addTarget:self action:@selector(addFoodButtonClick:) forControlEvents:UIControlEventTouchUpInside];
         [self.contentView addSubview:_addFoodButton];
@@ -39,8 +36,6 @@
         _foodNumberLabel.textAlignment = NSTextAlignmentCenter;
         _foodNumberLabel.hidden = YES;
         [self.contentView addSubview:_foodNumberLabel];
-        
-        _foodNumber = 0;
     }
     return self;
 }
