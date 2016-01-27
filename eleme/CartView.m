@@ -20,6 +20,7 @@
         [_cartButton setImage:[UIImage imageNamed:@"e_no_cart"] forState:UIControlStateNormal];
         [_cartButton setTintColor:[UIColor whiteColor]];
         [_cartButton addTarget:self action:@selector(cartButtonClick:) forControlEvents:UIControlEventTouchUpInside];
+        _cartButton.enabled = NO;
         [self addSubview:_cartButton];
         
         _cartNumberLabel = [[UILabel alloc] initWithFrame:CGRectMake(32, 6, 15, 15)];

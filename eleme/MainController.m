@@ -239,6 +239,7 @@
 
 #pragma mark - foodCellDelegate
 - (void)addFood:(FoodCell *)cell {
+    self.cartView.cartButton.enabled = YES;
     self.cartTotalNumber++;
     self.cartView.foodNumber = self.cartTotalNumber;
     [self.foodsInCartDictionary setObject:[NSNumber numberWithInt:cell.foodNumber] forKey:cell.foodNameLabel.text];
@@ -258,6 +259,9 @@
     }
     [self.cartListView.cartListTableView reloadData];
     [self.foodTableView reloadData];
+    if (self.cartTotalNumber <= 0) {
+        self.cartView.cartButton.enabled = NO;
+    }
 }
 
 #pragma mark - cartViewDelegate
@@ -295,7 +299,14 @@
 
 #pragma mark - cartListViewDelegate
 - (void)clearCart {
-    NSLog(@"clear cart");
+    self.cartTotalNumber = 0;
+    self.cartView.foodNumber = self.cartTotalNumber;
+    [self.foodsInCartArray removeAllObjects];
+    [self.foodsInCartDictionary removeAllObjects];
+    [self.cartListView.cartListTableView reloadData];
+    [self.foodTableView reloadData];
+    [self backgroundClick:nil];
+    self.cartView.cartButton.enabled = NO;
 }
 
 @end
