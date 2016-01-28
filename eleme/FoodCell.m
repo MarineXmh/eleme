@@ -28,7 +28,7 @@
     [self.contentView addSubview:_foodNameLabel];
     
     _addFoodButton = [UIButton buttonWithType:UIButtonTypeSystem];
-    _addFoodButton.frame = CGRectMake(CGRectGetMaxX(self.contentView.frame) - 52, 25, 30, 30);
+    _addFoodButton.frame = CGRectMake([UIScreen mainScreen].bounds.size.width / 5 * 4 - 40, 25, 30, 30);
     [_addFoodButton setImage:[UIImage imageNamed:@"cart_add"] forState:UIControlStateNormal];
     [_addFoodButton addTarget:self action:@selector(addFoodButtonClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.contentView addSubview:_addFoodButton];
@@ -40,7 +40,8 @@
     [_minusFoodButton addTarget:self action:@selector(minusFoodButtonClick:) forControlEvents:UIControlEventTouchUpInside];
     _minusFoodButton.hidden = YES;
     
-    _foodNumberLabel = [[UILabel alloc] initWithFrame:CGRectMake(_addFoodButton.frame.origin.x - 8 - 30, _addFoodButton.frame.origin.y, 30, 30)];
+    CGFloat foodNumberLabelWidth = 20;
+    _foodNumberLabel = [[UILabel alloc] initWithFrame:CGRectMake(_addFoodButton.frame.origin.x - foodNumberLabelWidth, _addFoodButton.frame.origin.y, foodNumberLabelWidth, 30)];
     _foodNumberLabel.font = [UIFont systemFontOfSize:16.0];
     _foodNumberLabel.textAlignment = NSTextAlignmentCenter;
     _foodNumberLabel.hidden = YES;
@@ -59,7 +60,8 @@
         self.foodNumberLabel.text = [NSString stringWithFormat:@"%d", self.foodNumber];
         self.foodNumberLabel.hidden = NO;
         self.minusFoodButton.hidden = NO;
-        self.minusFoodButton.frame = CGRectMake(self.foodNumberLabel.frame.origin.x - 8 - 30, self.addFoodButton.frame.origin.y, 30, 30);
+        CGFloat minusFoodButtonWidth = 30;
+        self.minusFoodButton.frame = CGRectMake(self.foodNumberLabel.frame.origin.x - minusFoodButtonWidth, self.addFoodButton.frame.origin.y, minusFoodButtonWidth, 30);
     } else {
         self.foodNumberLabel.text = [NSString stringWithFormat:@"%d", self.foodNumber];
         self.foodNumberLabel.hidden = YES;
@@ -75,7 +77,8 @@
         self.foodNumberLabel.hidden = NO;
         [UIView animateWithDuration:0.2 animations:^{
             self.minusFoodButton.hidden = NO;
-            self.minusFoodButton.frame = CGRectMake(self.foodNumberLabel.frame.origin.x - 8 - 30, self.addFoodButton.frame.origin.y, 30, 30);
+            CGFloat minusFoodButtonWidth = 30;
+            self.minusFoodButton.frame = CGRectMake(self.foodNumberLabel.frame.origin.x - minusFoodButtonWidth, self.addFoodButton.frame.origin.y, minusFoodButtonWidth, 30);
         }];
     }
     if ([self.delegate respondsToSelector:@selector(addFood:)]) {

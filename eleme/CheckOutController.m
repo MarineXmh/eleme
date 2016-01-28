@@ -20,7 +20,7 @@
     
     self.title = @"确认菜单";
     
-    self.checkOutListTableView = [[UITableView alloc] initWithFrame:CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y, self.view.frame.size.width, self.view.frame.size.height - 50) style:UITableViewStyleGrouped];
+    self.checkOutListTableView = [[UITableView alloc] initWithFrame:CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y, self.view.frame.size.width, self.view.frame.size.height - 50) style:UITableViewStylePlain];
     self.checkOutListTableView.delegate = self;
     self.checkOutListTableView.dataSource = self;
     self.checkOutListTableView.separatorStyle = NO;

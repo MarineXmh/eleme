@@ -253,6 +253,7 @@
 
 #pragma mark - selectionViewDelegate
 - (void)selectionChanged:(UIButton *)button {
+    [self clearCart];
     [self loadData:button.titleLabel.text];
 }
 

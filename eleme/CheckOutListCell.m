@@ -24,7 +24,7 @@
     _foodNameLabel.font = [UIFont systemFontOfSize:16.0];
     [self.contentView addSubview:_foodNameLabel];
     
-    _foodNumberLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.contentView.frame.size.width - 30, 10, 30, 20)];
+    _foodNumberLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.contentView.frame.size.width, 10, 30, 20)];
     _foodNumberLabel.font = [UIFont systemFontOfSize:16.0];
     _foodNumberLabel.textAlignment = NSTextAlignmentCenter;
     [self.contentView addSubview:_foodNumberLabel];
@@ -32,7 +32,7 @@
 
 - (void)setFoodNumber:(int)foodNumber {
     _foodNumber = foodNumber;
-    self.foodNumberLabel.text = [NSString stringWithFormat:@"*%d", self.foodNumber];
+    self.foodNumberLabel.text = [NSString stringWithFormat:@"× %d", self.foodNumber];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
