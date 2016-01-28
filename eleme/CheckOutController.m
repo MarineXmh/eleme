@@ -20,12 +20,23 @@
     
     self.title = @"确认菜单";
     
-    self.checkOutListTableView = [[UITableView alloc] initWithFrame:self.view.frame style:UITableViewStyleGrouped];
+    self.checkOutListTableView = [[UITableView alloc] initWithFrame:CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y, self.view.frame.size.width, self.view.frame.size.height - 50) style:UITableViewStyleGrouped];
     self.checkOutListTableView.delegate = self;
     self.checkOutListTableView.dataSource = self;
     self.checkOutListTableView.separatorStyle = NO;
-    
     [self.view addSubview:self.checkOutListTableView];
+    
+    UIView *bottomBarView = [[UIView alloc] initWithFrame:CGRectMake(self.checkOutListTableView.frame.origin.x, CGRectGetMaxY(self.checkOutListTableView.frame), self.view.frame.size.width, 50)];
+    bottomBarView.backgroundColor = [UIColor darkGrayColor];
+    [self.view addSubview:bottomBarView];
+    
+    UIButton *checkOutButton = [UIButton buttonWithType:UIButtonTypeSystem];
+    checkOutButton.frame = CGRectMake(self.view.frame.size.width - 100, 0, 100, bottomBarView.frame.size.height);
+    [checkOutButton setBackgroundColor:[UIColor colorWithRed:(100.f / 255.f) green:(225.f / 255.f) blue:(100.f / 255.f) alpha:1.0]];
+    [checkOutButton setTitle:@"提交菜单" forState:UIControlStateNormal];
+    checkOutButton.titleLabel.font = [UIFont systemFontOfSize:20.0];
+    [checkOutButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [bottomBarView addSubview:checkOutButton];
     // Do any additional setup after loading the view.
 }
 

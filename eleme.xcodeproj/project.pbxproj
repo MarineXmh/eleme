@@ -12,7 +12,6 @@
 		8A27F6C11C570EE0002E5876 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8A27F6C01C570EE0002E5876 /* Assets.xcassets */; };
 		8A27F6CD1C570FD5002E5876 /* MainController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A27F6CC1C570FD5002E5876 /* MainController.m */; };
 		8A27F6D01C5719A6002E5876 /* SelectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A27F6CF1C5719A6002E5876 /* SelectionView.m */; };
-		8A27F6D31C572598002E5876 /* Food.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A27F6D21C572598002E5876 /* Food.m */; };
 		8A27F6D61C57261D002E5876 /* FoodCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A27F6D51C57261D002E5876 /* FoodCell.m */; };
 		8A27F6DC1C5747C4002E5876 /* CartView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A27F6DB1C5747C4002E5876 /* CartView.m */; };
 		8A27F6DF1C575C82002E5876 /* IndexCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A27F6DE1C575C81002E5876 /* IndexCell.m */; };
@@ -33,8 +32,6 @@
 		8A27F6CC1C570FD5002E5876 /* MainController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainController.m; sourceTree = "<group>"; };
 		8A27F6CE1C5719A6002E5876 /* SelectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectionView.h; sourceTree = "<group>"; };
 		8A27F6CF1C5719A6002E5876 /* SelectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectionView.m; sourceTree = "<group>"; };
-		8A27F6D11C572598002E5876 /* Food.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Food.h; sourceTree = "<group>"; };
-		8A27F6D21C572598002E5876 /* Food.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Food.m; sourceTree = "<group>"; };
 		8A27F6D41C57261D002E5876 /* FoodCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FoodCell.h; sourceTree = "<group>"; };
 		8A27F6D51C57261D002E5876 /* FoodCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FoodCell.m; sourceTree = "<group>"; };
 		8A27F6DA1C5747C4002E5876 /* CartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CartView.h; sourceTree = "<group>"; };
@@ -136,8 +133,6 @@
 		8A27F6D91C57263A002E5876 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				8A27F6D11C572598002E5876 /* Food.h */,
-				8A27F6D21C572598002E5876 /* Food.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -212,7 +207,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				8A27F6DC1C5747C4002E5876 /* CartView.m in Sources */,
-				8A27F6D31C572598002E5876 /* Food.m in Sources */,
 				8A27F6D61C57261D002E5876 /* FoodCell.m in Sources */,
 				8A8EE2311C58A63000F55C53 /* CheckOutController.m in Sources */,
 				8A8EE22E1C58657500F55C53 /* CartListCell.m in Sources */,
