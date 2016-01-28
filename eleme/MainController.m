@@ -14,6 +14,7 @@
 #import "IndexCell.h"
 #import "CartListView.h"
 #import "CartListCell.h"
+#import "CheckOutController.h"
 
 @interface MainController () <UITableViewDelegate, UITableViewDataSource, SelectionViewDelegate, FoodCellDelegate, CartViewDelegate, UIScrollViewDelegate, CartListViewDelegate, CartListCellDelegate>
 
@@ -26,6 +27,7 @@
 @property (nonatomic, assign) int cartTotalNumber;
 @property (nonatomic, strong) NSMutableArray *indexArray;
 @property (nonatomic, strong) NSMutableArray *foodsArray;
+@property (nonatomic, strong) NSMutableArray *foodImagesArray;
 @property (nonatomic, strong) NSMutableDictionary *foodsInCartDictionary;
 @property (nonatomic, strong) NSMutableArray *foodsInCartArray;
 @property (nonatomic, assign) BOOL isScrollToBottom;
@@ -41,11 +43,12 @@
     self.cartTotalNumber = 0;
     self.indexArray = [[NSMutableArray alloc] init];
     self.foodsArray =[[NSMutableArray alloc] init];
+    self.foodImagesArray = [[NSMutableArray alloc] init];
     self.foodsInCartDictionary = [[NSMutableDictionary alloc] init];
     self.foodsInCartArray = [[NSMutableArray alloc] init];
     [self setNavgationBar];
     [self addTableView];
-    [self makeData];
+    [self loadData:@"早餐"];
     // Do any additional setup after loading the view.
 }
 
@@ -54,16 +57,109 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)makeData {
-    self.indexArray = [NSMutableArray arrayWithArray:@[@"套餐", @"小吃", @"饮料"]];
-    for (int j = 0; j < 3; j++) {
-        NSMutableArray *foodsArray = [[NSMutableArray alloc] init];
-        for (int i = 0; i < 20; i++) {
-            [foodsArray addObject:[NSString stringWithFormat:@"食物%d", i] ];
+- (void)loadData:(NSString *)type {
+    [self.foodsArray removeAllObjects];
+    [self.indexArray removeAllObjects];
+    [self.foodImagesArray removeAllObjects];
+    NSFileManager *fm = [NSFileManager defaultManager];
+    NSString *documentPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+    NSString *foodImagesPath = [NSString stringWithFormat:@"%@/FoodImages", documentPath];
+    if ([type isEqualToString:@"夜餐"]) {
+        NSString *midnightSnackListPath = [NSString stringWithFormat:@"%@/夜", foodImagesPath];
+        NSArray *midnightSnackArray = [fm subpathsAtPath:midnightSnackListPath];
+        for (NSString *data in midnightSnackArray) {
+            NSString *index = [[data componentsSeparatedByString:@"/"] objectAtIndex:0];
+            if ([index isEqualToString:@".DS_Store"]) {
+                continue;
+            }
+            if (![self.indexArray containsObject:index]) {
+                [self.indexArray addObject:index];
+                NSArray *foodImagesArray = [fm subpathsAtPath:[NSString stringWithFormat:@"%@/%@", midnightSnackListPath, index]];
+                NSMutableArray *foodsArray = [[NSMutableArray alloc] init];
+                NSMutableArray *foodImagesPathArray = [[NSMutableArray alloc] init];
+                for (NSString *food in foodImagesArray) {
+                    [foodsArray addObject:[[food componentsSeparatedByString:@"."] objectAtIndex:0]];
+                    NSString *foodImagePath = [NSString stringWithFormat:@"%@/%@/%@", midnightSnackListPath, index, food];
+                    [foodImagesPathArray addObject:foodImagePath];
+                }
+                [self.foodsArray addObject:foodsArray];
+                [self.foodImagesArray addObject:foodImagesPathArray];
+            }
         }
-        [self.foodsArray addObject:foodsArray];
-        foodsArray= nil;
     }
+    if ([type isEqualToString:@"早餐"]) {
+        NSString *breakfastListPath = [NSString stringWithFormat:@"%@/早", foodImagesPath];
+        NSArray *breakfastArray = [fm subpathsAtPath:breakfastListPath];
+        for (NSString *data in breakfastArray) {
+            NSString *index = [[data componentsSeparatedByString:@"/"] objectAtIndex:0];
+            if ([index isEqualToString:@".DS_Store"]) {
+                continue;
+            }
+            if (![self.indexArray containsObject:index]) {
+                [self.indexArray addObject:index];
+                NSArray *foodImagesArray = [fm subpathsAtPath:[NSString stringWithFormat:@"%@/%@", breakfastListPath, index]];
+                NSMutableArray *foodsArray = [[NSMutableArray alloc] init];
+                NSMutableArray *foodImagesPathArray = [[NSMutableArray alloc] init];
+                for (NSString *food in foodImagesArray) {
+                    [foodsArray addObject:[[food componentsSeparatedByString:@"."] objectAtIndex:0]];
+                    NSString *foodImagePath = [NSString stringWithFormat:@"%@/%@/%@", breakfastListPath, index, food];
+                    [foodImagesPathArray addObject:foodImagePath];
+                }
+                [self.foodsArray addObject:foodsArray];
+                [self.foodImagesArray addObject:foodImagesPathArray];
+            }
+        }
+    }
+    if ([type isEqualToString:@"午餐"]) {
+        NSString *launchListPath = [NSString stringWithFormat:@"%@/午", foodImagesPath];
+        NSArray *launchArray = [fm subpathsAtPath:launchListPath];
+        for (NSString *data in launchArray) {
+            NSString *index = [[data componentsSeparatedByString:@"/"] objectAtIndex:0];
+            if ([index isEqualToString:@".DS_Store"]) {
+                continue;
+            }
+            if (![self.indexArray containsObject:index]) {
+                [self.indexArray addObject:index];
+                NSArray *foodImagesArray = [fm subpathsAtPath:[NSString stringWithFormat:@"%@/%@", launchListPath, index]];
+                NSMutableArray *foodsArray = [[NSMutableArray alloc] init];
+                NSMutableArray *foodImagesPathArray = [[NSMutableArray alloc] init];
+                for (NSString *food in foodImagesArray) {
+                    [foodsArray addObject:[[food componentsSeparatedByString:@"."] objectAtIndex:0]];
+                    NSString *foodImagePath = [NSString stringWithFormat:@"%@/%@/%@", launchListPath, index, food];
+                    [foodImagesPathArray addObject:foodImagePath];
+                }
+                [self.foodsArray addObject:foodsArray];
+                [self.foodImagesArray addObject:foodImagesPathArray];
+            }
+        }
+    }
+    if ([type isEqualToString:@"晚餐"]) {
+        NSString *supperListPath = [NSString stringWithFormat:@"%@/晚", foodImagesPath];
+        NSArray *supperArray = [fm subpathsAtPath:supperListPath];
+        for (NSString *data in supperArray) {
+            NSString *index = [[data componentsSeparatedByString:@"/"] objectAtIndex:0];
+            if ([index isEqualToString:@".DS_Store"]) {
+                continue;
+            }
+            if (![self.indexArray containsObject:index]) {
+                [self.indexArray addObject:index];
+                NSArray *foodImagesArray = [fm subpathsAtPath:[NSString stringWithFormat:@"%@/%@", supperListPath, index]];
+                NSMutableArray *foodsArray = [[NSMutableArray alloc] init];
+                NSMutableArray *foodImagesPathArray = [[NSMutableArray alloc] init];
+                for (NSString *food in foodImagesArray) {
+                    [foodsArray addObject:[[food componentsSeparatedByString:@"."] objectAtIndex:0]];
+                    NSString *foodImagePath = [NSString stringWithFormat:@"%@/%@/%@", supperListPath, index, food];
+                    [foodImagesPathArray addObject:foodImagePath];
+                }
+                [self.foodsArray addObject:foodsArray];
+                [self.foodImagesArray addObject:foodImagesPathArray];
+            }
+        }
+    }
+    [self.indexTableView reloadData];
+    [self.foodTableView reloadData];
+    [self.indexTableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:NO scrollPosition:UITableViewScrollPositionTop];
+    [self.foodTableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:NO];
 }
 
 - (void)setNavgationBar {
@@ -89,6 +185,7 @@
     self.indexTableView.delegate = self;
     self.indexTableView.dataSource = self;
     self.indexTableView.backgroundColor = [UIColor whiteColor];
+    [self.indexTableView setTableFooterView:[[UIView alloc] init]];
     
     self.foodTableView = [[UITableView alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 5 , CGRectGetMaxY(self.selectionView.frame), self.view.frame.size.width / 5 * 4, self.view.frame.size.height  - 20 - self.navigationController.navigationBar.frame.size.height - 100) style:UITableViewStylePlain];
     self.foodTableView.delegate = self;
@@ -177,7 +274,7 @@
         
         cell.foodNameLabel.text = [self.foodsArray[indexPath.section] objectAtIndex:indexPath.row];
         cell.foodNumber = [[self.foodsInCartDictionary objectForKey:cell.foodNameLabel.text] intValue];
-        cell.foodImageView.image = [UIImage imageNamed:@"food"];
+        cell.foodImageView.image = [UIImage imageWithContentsOfFile:[self.foodImagesArray[indexPath.section] objectAtIndex:indexPath.row]];
         cell.delegate = self;
         
         return cell;
@@ -199,7 +296,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     NSIndexPath *index = [NSIndexPath indexPathForRow:0 inSection:indexPath.item];
     if (tableView == self.indexTableView) {
-        [self.foodTableView scrollToRowAtIndexPath:index atScrollPosition:UITableViewScrollPositionTop animated:YES];
+        [self.foodTableView scrollToRowAtIndexPath:index atScrollPosition:UITableViewScrollPositionTop animated:NO];
     } else {
         [tableView deselectRowAtIndexPath:indexPath animated:YES];
     }
@@ -208,14 +305,14 @@
 - (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section {
     if (tableView == self.foodTableView && self.isScrollToBottom == NO) {
         NSIndexPath *index = [NSIndexPath indexPathForRow:section inSection:0];
-        [self.indexTableView selectRowAtIndexPath:index animated:YES scrollPosition:UITableViewScrollPositionNone];
+        [self.indexTableView selectRowAtIndexPath:index animated:NO scrollPosition:UITableViewScrollPositionNone];
     }
 }
 
 - (void)tableView:(UITableView *)tableView didEndDisplayingHeaderView:(UIView *)view forSection:(NSInteger)section {
     if (tableView == self.foodTableView && self.isScrollToBottom == YES) {
         NSIndexPath *index = [NSIndexPath indexPathForRow:section + 1 inSection:0];
-        [self.indexTableView selectRowAtIndexPath:index animated:YES scrollPosition:UITableViewScrollPositionNone];
+        [self.indexTableView selectRowAtIndexPath:index animated:NO scrollPosition:UITableViewScrollPositionNone];
     }
 }
 
@@ -234,7 +331,7 @@
 
 #pragma mark - selectionViewDelegate
 - (void)selectionChanged:(UIButton *)button {
-    NSLog(@"%@", button.titleLabel.text);
+    [self loadData:button.titleLabel.text];
 }
 
 #pragma mark - foodCellDelegate
@@ -266,7 +363,10 @@
 
 #pragma mark - cartViewDelegate
 - (void)checkOut {
-    NSLog(@"check out");
+    CheckOutController *checkOutController = [[CheckOutController alloc] init];
+    checkOutController.foodsInCartArray = self.foodsInCartArray;
+    checkOutController.foodsInCartDictionary = self.foodsInCartDictionary;
+    [self.navigationController pushViewController:checkOutController animated:YES];
 }
 
 - (void)showCart {

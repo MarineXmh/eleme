@@ -18,6 +18,8 @@
 		8A27F6DF1C575C82002E5876 /* IndexCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A27F6DE1C575C81002E5876 /* IndexCell.m */; };
 		8A8EE22B1C585DE000F55C53 /* CartListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A8EE22A1C585DE000F55C53 /* CartListView.m */; };
 		8A8EE22E1C58657500F55C53 /* CartListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A8EE22D1C58657500F55C53 /* CartListCell.m */; };
+		8A8EE2311C58A63000F55C53 /* CheckOutController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A8EE2301C58A63000F55C53 /* CheckOutController.m */; };
+		8AB9A9E51C58B63D00223985 /* CheckOutListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AB9A9E41C58B63D00223985 /* CheckOutListCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +45,10 @@
 		8A8EE22A1C585DE000F55C53 /* CartListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CartListView.m; sourceTree = "<group>"; };
 		8A8EE22C1C58657500F55C53 /* CartListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CartListCell.h; sourceTree = "<group>"; };
 		8A8EE22D1C58657500F55C53 /* CartListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CartListCell.m; sourceTree = "<group>"; };
+		8A8EE22F1C58A63000F55C53 /* CheckOutController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckOutController.h; sourceTree = "<group>"; };
+		8A8EE2301C58A63000F55C53 /* CheckOutController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckOutController.m; sourceTree = "<group>"; };
+		8AB9A9E31C58B63D00223985 /* CheckOutListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckOutListCell.h; sourceTree = "<group>"; };
+		8AB9A9E41C58B63D00223985 /* CheckOutListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckOutListCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +106,8 @@
 			children = (
 				8A27F6CB1C570FD5002E5876 /* MainController.h */,
 				8A27F6CC1C570FD5002E5876 /* MainController.m */,
+				8A8EE22F1C58A63000F55C53 /* CheckOutController.h */,
+				8A8EE2301C58A63000F55C53 /* CheckOutController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -119,6 +127,8 @@
 				8A8EE22A1C585DE000F55C53 /* CartListView.m */,
 				8A8EE22C1C58657500F55C53 /* CartListCell.h */,
 				8A8EE22D1C58657500F55C53 /* CartListCell.m */,
+				8AB9A9E31C58B63D00223985 /* CheckOutListCell.h */,
+				8AB9A9E41C58B63D00223985 /* CheckOutListCell.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -204,9 +214,11 @@
 				8A27F6DC1C5747C4002E5876 /* CartView.m in Sources */,
 				8A27F6D31C572598002E5876 /* Food.m in Sources */,
 				8A27F6D61C57261D002E5876 /* FoodCell.m in Sources */,
+				8A8EE2311C58A63000F55C53 /* CheckOutController.m in Sources */,
 				8A8EE22E1C58657500F55C53 /* CartListCell.m in Sources */,
 				8A27F6B91C570EE0002E5876 /* AppDelegate.m in Sources */,
 				8A27F6CD1C570FD5002E5876 /* MainController.m in Sources */,
+				8AB9A9E51C58B63D00223985 /* CheckOutListCell.m in Sources */,
 				8A8EE22B1C585DE000F55C53 /* CartListView.m in Sources */,
 				8A27F6B61C570EE0002E5876 /* main.m in Sources */,
 				8A27F6DF1C575C82002E5876 /* IndexCell.m in Sources */,
