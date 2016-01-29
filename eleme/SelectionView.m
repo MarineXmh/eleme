@@ -19,8 +19,12 @@
 }
 
 - (void)setButtons {
+    CGFloat ButtonWidth = self.frame.size.width / 4;
+    CGFloat ButtonHeight = self.frame.size.height - 2;
+    CGFloat breakfastListButtonX = 0;
+    CGFloat ButtonY = 0;
     _breakfastListButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    _breakfastListButton.frame = CGRectMake(0, 0, self.frame.size.width / 4, self.frame.size.height - 2);
+    _breakfastListButton.frame = CGRectMake(breakfastListButtonX, ButtonY, ButtonWidth, ButtonHeight);
     [_breakfastListButton setTitle:@"早餐" forState:UIControlStateNormal];
     [_breakfastListButton setTitle:@"早餐" forState:UIControlStateSelected];
     [_breakfastListButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
@@ -28,8 +32,9 @@
     [_breakfastListButton addTarget:self action:@selector(selectionButtonClick:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:_breakfastListButton];
     
+    CGFloat launchListButtonX = CGRectGetMaxX(_breakfastListButton.frame);
     _launchListButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    _launchListButton.frame = CGRectMake(CGRectGetMaxX(_breakfastListButton.frame), 0, self.frame.size.width / 4, self.frame.size.height - 2);
+    _launchListButton.frame = CGRectMake(launchListButtonX, ButtonY, ButtonWidth, ButtonHeight);
     [_launchListButton setTitle:@"午餐" forState:UIControlStateNormal];
     [_launchListButton setTitle:@"午餐" forState:UIControlStateSelected];
     [_launchListButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
@@ -37,8 +42,9 @@
     [_launchListButton addTarget:self action:@selector(selectionButtonClick:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:_launchListButton];
     
+    CGFloat supperListButtonX = CGRectGetMaxX(_launchListButton.frame);
     _supperListButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    _supperListButton.frame = CGRectMake(CGRectGetMaxX(_launchListButton.frame), 0, self.frame.size.width / 4, self.frame.size.height - 2);
+    _supperListButton.frame = CGRectMake(supperListButtonX, ButtonY, ButtonWidth, ButtonHeight);
     [_supperListButton setTitle:@"晚餐" forState:UIControlStateNormal];
     [_supperListButton setTitle:@"晚餐" forState:UIControlStateSelected];
     [_supperListButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
@@ -46,8 +52,9 @@
     [_supperListButton addTarget:self action:@selector(selectionButtonClick:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:_supperListButton];
     
+    CGFloat midnightSnackListButtonX = CGRectGetMaxX(_supperListButton.frame);
     _midnightSnackListButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    _midnightSnackListButton.frame = CGRectMake(CGRectGetMaxX(_supperListButton.frame), 0, self.frame.size.width / 4, self.frame.size.height - 2);
+    _midnightSnackListButton.frame = CGRectMake(midnightSnackListButtonX, ButtonY, ButtonWidth, ButtonHeight);
     [_midnightSnackListButton setTitle:@"夜餐" forState:UIControlStateNormal];
     [_midnightSnackListButton setTitle:@"夜餐" forState:UIControlStateSelected];
     [_midnightSnackListButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];

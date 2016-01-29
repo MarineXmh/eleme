@@ -20,15 +20,24 @@
 }
 
 - (void)addViews {
+    CGFloat padding = 8;
+    
+    CGFloat cartButtonWidth = 40;
+    CGFloat cartButtonHeight = cartButtonWidth;
+    CGFloat cartButtonX = padding;
+    CGFloat cartButtonY = (self.frame.size.height - cartButtonHeight) / 2;
     _cartButton = [UIButton buttonWithType:UIButtonTypeSystem];
-    _cartButton.frame = CGRectMake(8, 5, 40, 40);
+    _cartButton.frame = CGRectMake(cartButtonX, cartButtonY, cartButtonWidth, cartButtonHeight);
     [_cartButton setImage:[UIImage imageNamed:@"e_no_cart"] forState:UIControlStateNormal];
     [_cartButton setTintColor:[UIColor whiteColor]];
     [_cartButton addTarget:self action:@selector(cartButtonClick:) forControlEvents:UIControlEventTouchUpInside];
     _cartButton.enabled = NO;
     [self addSubview:_cartButton];
     
-    _cartNumberLabel = [[UILabel alloc] initWithFrame:CGRectMake(32, 6, 15, 15)];
+    CGFloat cartNumberLabelWidth = 15;
+    CGFloat cartNumberLabelX = CGRectGetMaxX(self.cartButton.frame) - padding * 2;
+    CGFloat cartNumberLabelY = cartButtonY;
+    _cartNumberLabel = [[UILabel alloc] initWithFrame:CGRectMake(cartNumberLabelX, cartNumberLabelY, cartNumberLabelWidth, cartNumberLabelWidth)];
     _cartNumberLabel.font = [UIFont systemFontOfSize:10.0];
     [_cartNumberLabel setBackgroundColor:[UIColor redColor]];
     [_cartNumberLabel setTextColor:[UIColor whiteColor]];
@@ -38,8 +47,11 @@
     _cartNumberLabel.hidden = YES;
     [self addSubview:_cartNumberLabel];
     
+    CGFloat checkOutButtonWidth = 100;
+    CGFloat checkOutButtonHeight = self.frame.size.height;
+    CGFloat checkOutButtonX = self.frame.size.width - checkOutButtonWidth;
     _checkOutButton = [UIButton buttonWithType:UIButtonTypeSystem];
-    _checkOutButton.frame = CGRectMake(self.frame.size.width - 100, 0, 100, self.frame.size.height);
+    _checkOutButton.frame = CGRectMake(checkOutButtonX, 0, checkOutButtonWidth, checkOutButtonHeight);
     [_checkOutButton setBackgroundColor:[UIColor colorWithRed:(100.f / 255.f) green:(225.f / 255.f) blue:(100.f / 255.f) alpha:1.0]];
     [_checkOutButton setTitle:@"去结算" forState:UIControlStateNormal];
     _checkOutButton.titleLabel.font = [UIFont systemFontOfSize:20.0];

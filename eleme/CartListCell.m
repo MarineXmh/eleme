@@ -19,13 +19,23 @@
 }
 
 - (void)addViews {
-    _foodNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 10, self.contentView.frame.size.width - 150 , 30)];
+    CGFloat padding = 8;
+    
+    CGFloat foodNameLabelWidth =  self.contentView.frame.size.width;
+    CGFloat foodNameLabelHeight = 30;
+    CGFloat foodNameLabelX = padding * 2;
+    CGFloat foodNameLabelY = (50 - foodNameLabelHeight) / 2;
+    _foodNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(foodNameLabelX, foodNameLabelY, foodNameLabelWidth, foodNameLabelHeight)];
     [_foodNameLabel setTextColor:[UIColor blackColor]];
     _foodNameLabel.font = [UIFont systemFontOfSize:16.0];
     [self.contentView addSubview:_foodNameLabel];
     
+    CGFloat addFoodButtonWidth = 30;
+    CGFloat addFoodButtonHeight = addFoodButtonWidth;
+    CGFloat addFoodButtonX = [UIScreen mainScreen].bounds.size.width - padding - addFoodButtonWidth;
+    CGFloat addFoodButtonY = (50 - addFoodButtonHeight) / 2;
     _addFoodButton = [UIButton buttonWithType:UIButtonTypeSystem];
-    _addFoodButton.frame = CGRectMake([UIScreen mainScreen].bounds.size.width - 40, 10, 30, 30);
+    _addFoodButton.frame = CGRectMake(addFoodButtonX, addFoodButtonY, addFoodButtonWidth, addFoodButtonHeight);
     [_addFoodButton setImage:[UIImage imageNamed:@"cart_add"] forState:UIControlStateNormal];
     [_addFoodButton addTarget:self action:@selector(addFoodButtonClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.contentView addSubview:_addFoodButton];
@@ -38,7 +48,8 @@
     _minusFoodButton.hidden = YES;
     
     CGFloat foodNumberLabelWidth = 20;
-    _foodNumberLabel = [[UILabel alloc] initWithFrame:CGRectMake(_addFoodButton.frame.origin.x - foodNumberLabelWidth, _addFoodButton.frame.origin.y, foodNumberLabelWidth, 30)];
+    CGFloat foodNumberLabelHeight = 30;
+    _foodNumberLabel = [[UILabel alloc] initWithFrame:CGRectMake(addFoodButtonX - foodNumberLabelWidth, addFoodButtonY, foodNumberLabelWidth, foodNumberLabelHeight)];
     _foodNumberLabel.font = [UIFont systemFontOfSize:16.0];
     _foodNumberLabel.textAlignment = NSTextAlignmentCenter;
     _foodNumberLabel.hidden = YES;

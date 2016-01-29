@@ -104,28 +104,41 @@
 
 - (void)addViews
 {
-    self.selectionView = [[SelectionView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.navigationController.navigationBar.frame), self.view.frame.size.width, 50)];
+    CGFloat selectionViewY = CGRectGetMaxY(self.navigationController.navigationBar.frame);
+    CGFloat selectionViewHeight = 50;
+    self.selectionView = [[SelectionView alloc] initWithFrame:CGRectMake(0, selectionViewY, self.view.frame.size.width, selectionViewHeight)];
     self.selectionView.delegate = self;
     [self.view addSubview:self.selectionView];
     
-    self.indexTableView = [[UITableView alloc] initWithFrame:CGRectMake(0 , CGRectGetMaxY(self.selectionView.frame), self.view.frame.size.width / 5, self.view.frame.size.height - 20 - self.navigationController.navigationBar.frame.size.height - 100) style:UITableViewStylePlain];
+    CGFloat cartViewHeight = 50;
+    CGFloat cartViewY = CGRectGetMaxY(self.view.frame) - cartViewHeight;
+    self.cartView = [[CartView alloc] initWithFrame:CGRectMake(0, cartViewY, self.view.frame.size.width, cartViewHeight)];
+    self.cartView.delegate = self;
+    [self.view addSubview:self.cartView];
+    
+    CGFloat indexTableViewY = CGRectGetMaxY(self.selectionView.frame);
+    CGFloat indexTableViewWidth = self.view.frame.size.width / 5;
+    CGFloat indexTableViewHeight = self.view.frame.size.height - 20 - self.navigationController.navigationBar.frame.size.height - selectionViewHeight - cartViewHeight;
+    self.indexTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, indexTableViewY, indexTableViewWidth, indexTableViewHeight) style:UITableViewStylePlain];
     [self.view addSubview:self.indexTableView];
     self.indexTableView.delegate = self;
     self.indexTableView.dataSource = self;
     self.indexTableView.backgroundColor = [UIColor whiteColor];
     [self.indexTableView setTableFooterView:[[UIView alloc] init]];
     
-    self.foodTableView = [[UITableView alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 5 , CGRectGetMaxY(self.selectionView.frame), self.view.frame.size.width / 5 * 4, self.view.frame.size.height  - 20 - self.navigationController.navigationBar.frame.size.height - 100) style:UITableViewStylePlain];
+    CGFloat foodTableViewWidth = self.view.frame.size.width - indexTableViewWidth;
+    CGFloat foodTableViewHeight = indexTableViewHeight;
+    CGFloat foodTableViewX = CGRectGetMaxX(self.indexTableView.frame);
+    CGFloat foodTableViewY = indexTableViewY;
+    self.foodTableView = [[UITableView alloc] initWithFrame:CGRectMake(foodTableViewX, foodTableViewY, foodTableViewWidth, foodTableViewHeight) style:UITableViewStylePlain];
     self.foodTableView.delegate = self;
     self.foodTableView.dataSource = self;
     self.foodTableView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.foodTableView];
     
-    self.cartView = [[CartView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.view.frame) - 50, self.view.frame.size.width, 50)];
-    self.cartView.delegate = self;
-    [self.view addSubview:self.cartView];
-    
-    self.cartListView = [[CartListView alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height - self.cartView.frame.size.height, self.view.frame.size.width, 430)];
+    CGFloat cartListViewMaxHeight = 50 * 8 + 30;
+    CGFloat cartListViewY = self.view.frame.size.height - self.cartView.frame.size.height;
+    self.cartListView = [[CartListView alloc] initWithFrame:CGRectMake(0, cartListViewY, self.view.frame.size.width, cartListViewMaxHeight)];
     self.cartListView.hidden = YES;
     self.cartListView.delegate = self;
     self.cartListView.cartListTableView.dataSource = self;
@@ -283,8 +296,8 @@
     [self.cartListView.cartListTableView reloadData];
     [self.foodTableView reloadData];
     CGFloat cartListViewHeight = self.foodsInCartArray.count * 50 + 30;
-    if (cartListViewHeight > 430) {
-        cartListViewHeight = 430;
+    if (cartListViewHeight > 50 * 8 + 30) {
+        cartListViewHeight = 50 * 8 + 30;
     }
     [UIView animateWithDuration:0.2 animations:^{
         self.cartListView.frame = CGRectMake(0, self.view.frame.size.height - self.cartView.frame.size.height - cartListViewHeight, self.cartView.frame.size.width, cartListViewHeight);
@@ -312,8 +325,8 @@
             [self.view bringSubviewToFront:self.cartListView];
             [self.view bringSubviewToFront:self.cartView];
             CGFloat cartListViewHeight = self.foodsInCartArray.count * 50 + 30;
-            if (cartListViewHeight > 430) {
-                cartListViewHeight = 430;
+            if (cartListViewHeight > 50 * 8 + 30) {
+                cartListViewHeight = 50 * 8 + 30;
             }
             self.cartListView.frame = CGRectMake(0, self.view.frame.size.height - self.cartView.frame.size.height, self.view.frame.size.width, cartListViewHeight);
             [UIView animateWithDuration:0.3 animations:^{
@@ -328,8 +341,8 @@
 - (void)backgroundClick:(UIControl *)sender {
     [UIView animateWithDuration:0.3 animations:^{
         CGFloat cartListViewHeight = self.foodsInCartArray.count * 50 + 30;
-        if (cartListViewHeight > 430) {
-            cartListViewHeight = 430;
+        if (cartListViewHeight > 50 * 8 + 30) {
+            cartListViewHeight = 50 * 8 + 30;
         }
         self.cartListView.frame = CGRectMake(0, self.view.frame.size.height - self.cartView.frame.size.height, self.cartView.frame.size.width, cartListViewHeight);
         [self.backgroundView setBackgroundColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0.0]];

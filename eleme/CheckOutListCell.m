@@ -19,12 +19,21 @@
 }
 
 - (void)addViews {
-    _foodNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, self.contentView.frame.size.width - 100 , 20)];
+    CGFloat padding = 10;
+    
+    CGFloat foodNameLabelHeight = 20;
+    CGFloat foodNameLabelY = (40 - foodNameLabelHeight) / 2;
+    CGFloat foodNameLabelWidth = [UIScreen mainScreen].bounds.size.width;
+    _foodNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(padding, foodNameLabelY, foodNameLabelWidth, foodNameLabelHeight)];
     [_foodNameLabel setTextColor:[UIColor blackColor]];
     _foodNameLabel.font = [UIFont systemFontOfSize:16.0];
     [self.contentView addSubview:_foodNameLabel];
     
-    _foodNumberLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.contentView.frame.size.width, 10, 30, 20)];
+    CGFloat foodNumberLabelHeight = 20;
+    CGFloat foodNumberLabelWidth = 30;
+    CGFloat foodNumberLabelX = foodNameLabelWidth - foodNumberLabelWidth - padding;
+    CGFloat foodNumberLabelY = (40 - foodNumberLabelHeight) / 2;
+    _foodNumberLabel = [[UILabel alloc] initWithFrame:CGRectMake(foodNumberLabelX, foodNumberLabelY, foodNumberLabelWidth, foodNumberLabelHeight)];
     _foodNumberLabel.font = [UIFont systemFontOfSize:16.0];
     _foodNumberLabel.textAlignment = NSTextAlignmentCenter;
     [self.contentView addSubview:_foodNumberLabel];

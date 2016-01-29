@@ -19,16 +19,29 @@
 }
 
 - (void)addViews {
-    _foodImageView = [[UIImageView alloc] initWithFrame:CGRectMake(8, 10, 60, 60)];
+    CGFloat padding = 8;
+    
+    CGFloat foodImageViewWidth = 60;
+    CGFloat foodImageViewHeight = 60;
+    CGFloat foodImageViewY = (80 - foodImageViewHeight) / 2;
+    _foodImageView = [[UIImageView alloc] initWithFrame:CGRectMake(padding, foodImageViewY, foodImageViewWidth, foodImageViewHeight)];
     [self.contentView addSubview:_foodImageView];
     
-    _foodNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(_foodImageView.frame) + 8, 25, self.contentView.frame.size.width - CGRectGetMaxX(_foodImageView.frame) - 8 * 2 , 30)];
+    CGFloat foodNameLabelWidth =  self.contentView.frame.size.width;
+    CGFloat foodNameLabelHeight = 30;
+    CGFloat foodNameLabelX = CGRectGetMaxX(_foodImageView.frame) + padding;
+    CGFloat foodNameLabelY = (80 - foodNameLabelHeight) / 2;
+    _foodNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(foodNameLabelX, foodNameLabelY, foodNameLabelWidth, foodNameLabelHeight)];
     [_foodNameLabel setTextColor:[UIColor blackColor]];
     _foodNameLabel.font = [UIFont systemFontOfSize:16.0];
     [self.contentView addSubview:_foodNameLabel];
     
+    CGFloat addFoodButtonWidth = 30;
+    CGFloat addFoodButtonHeight = addFoodButtonWidth;
+    CGFloat addFoodButtonX = [UIScreen mainScreen].bounds.size.width / 5 * 4 - addFoodButtonWidth - padding;
+    CGFloat addFoodButtonY = (80 - addFoodButtonHeight) / 2;
     _addFoodButton = [UIButton buttonWithType:UIButtonTypeSystem];
-    _addFoodButton.frame = CGRectMake([UIScreen mainScreen].bounds.size.width / 5 * 4 - 40, 25, 30, 30);
+    _addFoodButton.frame = CGRectMake(addFoodButtonX, addFoodButtonY, addFoodButtonWidth, addFoodButtonHeight);
     [_addFoodButton setImage:[UIImage imageNamed:@"cart_add"] forState:UIControlStateNormal];
     [_addFoodButton addTarget:self action:@selector(addFoodButtonClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.contentView addSubview:_addFoodButton];
@@ -41,8 +54,9 @@
     _minusFoodButton.hidden = YES;
     
     CGFloat foodNumberLabelWidth = 20;
-    _foodNumberLabel = [[UILabel alloc] initWithFrame:CGRectMake(_addFoodButton.frame.origin.x - foodNumberLabelWidth, _addFoodButton.frame.origin.y, foodNumberLabelWidth, 30)];
-    _foodNumberLabel.font = [UIFont systemFontOfSize:16.0];
+    CGFloat foodNumberLabelHeight = 30;
+    _foodNumberLabel = [[UILabel alloc] initWithFrame:CGRectMake(addFoodButtonX - foodNumberLabelWidth, addFoodButtonY, foodNumberLabelWidth, foodNumberLabelHeight)];
+    _foodNumberLabel.font = [UIFont systemFontOfSize:14.0];
     _foodNumberLabel.textAlignment = NSTextAlignmentCenter;
     _foodNumberLabel.hidden = YES;
     [self.contentView addSubview:_foodNumberLabel];
@@ -61,7 +75,8 @@
         self.foodNumberLabel.hidden = NO;
         self.minusFoodButton.hidden = NO;
         CGFloat minusFoodButtonWidth = 30;
-        self.minusFoodButton.frame = CGRectMake(self.foodNumberLabel.frame.origin.x - minusFoodButtonWidth, self.addFoodButton.frame.origin.y, minusFoodButtonWidth, 30);
+        CGFloat minusFoodButtonHeight = minusFoodButtonWidth;
+        self.minusFoodButton.frame = CGRectMake(self.foodNumberLabel.frame.origin.x - minusFoodButtonWidth, self.addFoodButton.frame.origin.y, minusFoodButtonWidth, minusFoodButtonHeight);
     } else {
         self.foodNumberLabel.text = [NSString stringWithFormat:@"%d", self.foodNumber];
         self.foodNumberLabel.hidden = YES;
@@ -78,7 +93,8 @@
         [UIView animateWithDuration:0.2 animations:^{
             self.minusFoodButton.hidden = NO;
             CGFloat minusFoodButtonWidth = 30;
-            self.minusFoodButton.frame = CGRectMake(self.foodNumberLabel.frame.origin.x - minusFoodButtonWidth, self.addFoodButton.frame.origin.y, minusFoodButtonWidth, 30);
+            CGFloat minusFoodButtonHeight = minusFoodButtonWidth;
+            self.minusFoodButton.frame = CGRectMake(self.foodNumberLabel.frame.origin.x - minusFoodButtonWidth, self.addFoodButton.frame.origin.y, minusFoodButtonWidth, minusFoodButtonHeight);
         }];
     }
     if ([self.delegate respondsToSelector:@selector(addFood:)]) {

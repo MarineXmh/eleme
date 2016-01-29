@@ -19,7 +19,9 @@
 }
 
 - (void)addViews {
-    self.topBarView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, 30)];
+    
+    CGFloat topBarViewHeight = 30;
+    self.topBarView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, topBarViewHeight)];
     [self.topBarView setBackgroundColor:[UIColor colorWithRed:(225.f / 255.f) green:(225.f / 255.f) blue:(225.f / 255.f) alpha:1.0]];
     [self addSubview:self.topBarView];
     
