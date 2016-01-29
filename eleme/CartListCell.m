@@ -50,7 +50,7 @@
     CGFloat foodNumberLabelWidth = 20;
     CGFloat foodNumberLabelHeight = 30;
     _foodNumberLabel = [[UILabel alloc] initWithFrame:CGRectMake(addFoodButtonX - foodNumberLabelWidth, addFoodButtonY, foodNumberLabelWidth, foodNumberLabelHeight)];
-    _foodNumberLabel.font = [UIFont systemFontOfSize:16.0];
+    _foodNumberLabel.font = [UIFont systemFontOfSize:14.0];
     _foodNumberLabel.textAlignment = NSTextAlignmentCenter;
     _foodNumberLabel.hidden = YES;
     [self.contentView addSubview:_foodNumberLabel];
