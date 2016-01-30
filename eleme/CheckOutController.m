@@ -32,7 +32,7 @@
     
     UIButton *checkOutButton = [UIButton buttonWithType:UIButtonTypeSystem];
     checkOutButton.frame = CGRectMake(self.view.frame.size.width - 100, 0, 100, bottomBarView.frame.size.height);
-    [checkOutButton setBackgroundColor:[UIColor colorWithRed:(100.f / 255.f) green:(225.f / 255.f) blue:(100.f / 255.f) alpha:1.0]];
+    [checkOutButton setBackgroundColor:[UIColor colorWithRed:(86.f / 255.f) green:(209.f / 255.f) blue:(100.f / 255.f) alpha:1.0]];
     [checkOutButton setTitle:@"提交菜单" forState:UIControlStateNormal];
     checkOutButton.titleLabel.font = [UIFont systemFontOfSize:20.0];
     [checkOutButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];

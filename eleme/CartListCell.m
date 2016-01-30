@@ -30,25 +30,25 @@
     _foodNameLabel.font = [UIFont systemFontOfSize:16.0];
     [self.contentView addSubview:_foodNameLabel];
     
-    CGFloat addFoodButtonWidth = 30;
+    CGFloat addFoodButtonWidth = 25;
     CGFloat addFoodButtonHeight = addFoodButtonWidth;
     CGFloat addFoodButtonX = [UIScreen mainScreen].bounds.size.width - padding - addFoodButtonWidth;
     CGFloat addFoodButtonY = (50 - addFoodButtonHeight) / 2;
-    _addFoodButton = [UIButton buttonWithType:UIButtonTypeSystem];
+    _addFoodButton = [UIButton buttonWithType:UIButtonTypeCustom];
     _addFoodButton.frame = CGRectMake(addFoodButtonX, addFoodButtonY, addFoodButtonWidth, addFoodButtonHeight);
-    [_addFoodButton setImage:[UIImage imageNamed:@"cart_add"] forState:UIControlStateNormal];
+    [_addFoodButton setImage:[UIImage imageNamed:@"add_button"] forState:UIControlStateNormal];
     [_addFoodButton addTarget:self action:@selector(addFoodButtonClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.contentView addSubview:_addFoodButton];
     
-    _minusFoodButton = [UIButton buttonWithType:UIButtonTypeSystem];
+    _minusFoodButton = [UIButton buttonWithType:UIButtonTypeCustom];
     _minusFoodButton.frame = _addFoodButton.frame;
-    [_minusFoodButton setImage:[UIImage imageNamed:@"cart_minus"] forState:UIControlStateNormal];
+    [_minusFoodButton setImage:[UIImage imageNamed:@"minus_button"] forState:UIControlStateNormal];
     [self.contentView addSubview:_minusFoodButton];
     [_minusFoodButton addTarget:self action:@selector(minusFoodButtonClick:) forControlEvents:UIControlEventTouchUpInside];
     _minusFoodButton.hidden = YES;
     
-    CGFloat foodNumberLabelWidth = 20;
-    CGFloat foodNumberLabelHeight = 30;
+    CGFloat foodNumberLabelWidth = 30;
+    CGFloat foodNumberLabelHeight = 25;
     _foodNumberLabel = [[UILabel alloc] initWithFrame:CGRectMake(addFoodButtonX - foodNumberLabelWidth, addFoodButtonY, foodNumberLabelWidth, foodNumberLabelHeight)];
     _foodNumberLabel.font = [UIFont systemFontOfSize:14.0];
     _foodNumberLabel.textAlignment = NSTextAlignmentCenter;
@@ -66,8 +66,8 @@
         self.foodNumberLabel.text = [NSString stringWithFormat:@"%d", self.foodNumber];
         self.foodNumberLabel.hidden = NO;
         self.minusFoodButton.hidden = NO;
-        CGFloat minusFoodButtonWidth = 30;
-        self.minusFoodButton.frame = CGRectMake(self.foodNumberLabel.frame.origin.x - minusFoodButtonWidth, self.addFoodButton.frame.origin.y, minusFoodButtonWidth, 30);
+        CGFloat minusFoodButtonWidth = 25;
+        self.minusFoodButton.frame = CGRectMake(self.foodNumberLabel.frame.origin.x - minusFoodButtonWidth, self.addFoodButton.frame.origin.y, minusFoodButtonWidth, minusFoodButtonWidth);
     } else {
         self.foodNumberLabel.text = [NSString stringWithFormat:@"%d", self.foodNumber];
         self.foodNumberLabel.hidden = YES;
@@ -83,8 +83,8 @@
         self.foodNumberLabel.hidden = NO;
         [UIView animateWithDuration:0.2 animations:^{
             self.minusFoodButton.hidden = NO;
-            CGFloat minusFoodButtonWidth = 30;
-            self.minusFoodButton.frame = CGRectMake(self.foodNumberLabel.frame.origin.x - minusFoodButtonWidth, self.addFoodButton.frame.origin.y, minusFoodButtonWidth, 30);
+            CGFloat minusFoodButtonWidth = 25;
+            self.minusFoodButton.frame = CGRectMake(self.foodNumberLabel.frame.origin.x - minusFoodButtonWidth, self.addFoodButton.frame.origin.y, minusFoodButtonWidth, minusFoodButtonWidth);
         }];
     }
     if ([self.delegate respondsToSelector:@selector(addFood:)]) {

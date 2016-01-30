@@ -21,6 +21,7 @@
 @property (nonatomic, strong) UIButton *supperListButton;
 @property (nonatomic, strong) UIButton *midnightSnackListButton;
 @property (nonatomic, strong) UIView *indicatorBar;
+@property (nonatomic, strong) UIView *seperateLineView;
 @property (nonatomic, weak) id<SelectionViewDelegate> delegate;
 
 @end

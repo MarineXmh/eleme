@@ -15,6 +15,7 @@
 		8A27F6D61C57261D002E5876 /* FoodCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A27F6D51C57261D002E5876 /* FoodCell.m */; };
 		8A27F6DC1C5747C4002E5876 /* CartView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A27F6DB1C5747C4002E5876 /* CartView.m */; };
 		8A27F6DF1C575C82002E5876 /* IndexCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A27F6DE1C575C81002E5876 /* IndexCell.m */; };
+		8A3065C91C5B4251005B9540 /* FoodTableViewHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A3065C81C5B4251005B9540 /* FoodTableViewHeader.m */; };
 		8A8EE22B1C585DE000F55C53 /* CartListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A8EE22A1C585DE000F55C53 /* CartListView.m */; };
 		8A8EE22E1C58657500F55C53 /* CartListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A8EE22D1C58657500F55C53 /* CartListCell.m */; };
 		8A8EE2311C58A63000F55C53 /* CheckOutController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A8EE2301C58A63000F55C53 /* CheckOutController.m */; };
@@ -38,6 +39,8 @@
 		8A27F6DB1C5747C4002E5876 /* CartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CartView.m; sourceTree = "<group>"; };
 		8A27F6DD1C575C81002E5876 /* IndexCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IndexCell.h; sourceTree = "<group>"; };
 		8A27F6DE1C575C81002E5876 /* IndexCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IndexCell.m; sourceTree = "<group>"; };
+		8A3065C71C5B4251005B9540 /* FoodTableViewHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FoodTableViewHeader.h; sourceTree = "<group>"; };
+		8A3065C81C5B4251005B9540 /* FoodTableViewHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FoodTableViewHeader.m; sourceTree = "<group>"; };
 		8A8EE2291C585DE000F55C53 /* CartListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CartListView.h; sourceTree = "<group>"; };
 		8A8EE22A1C585DE000F55C53 /* CartListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CartListView.m; sourceTree = "<group>"; };
 		8A8EE22C1C58657500F55C53 /* CartListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CartListCell.h; sourceTree = "<group>"; };
@@ -126,6 +129,8 @@
 				8A8EE22D1C58657500F55C53 /* CartListCell.m */,
 				8AB9A9E31C58B63D00223985 /* CheckOutListCell.h */,
 				8AB9A9E41C58B63D00223985 /* CheckOutListCell.m */,
+				8A3065C71C5B4251005B9540 /* FoodTableViewHeader.h */,
+				8A3065C81C5B4251005B9540 /* FoodTableViewHeader.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -210,6 +215,7 @@
 				8A27F6D61C57261D002E5876 /* FoodCell.m in Sources */,
 				8A8EE2311C58A63000F55C53 /* CheckOutController.m in Sources */,
 				8A8EE22E1C58657500F55C53 /* CartListCell.m in Sources */,
+				8A3065C91C5B4251005B9540 /* FoodTableViewHeader.m in Sources */,
 				8A27F6B91C570EE0002E5876 /* AppDelegate.m in Sources */,
 				8A27F6CD1C570FD5002E5876 /* MainController.m in Sources */,
 				8AB9A9E51C58B63D00223985 /* CheckOutListCell.m in Sources */,

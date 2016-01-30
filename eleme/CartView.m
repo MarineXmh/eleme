@@ -13,7 +13,7 @@
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
-        [self setBackgroundColor:[UIColor darkGrayColor]];
+        [self setBackgroundColor:[UIColor colorWithRed:(61.f / 255.f) green:(61.f / 255.f)  blue:(61.f / 255.f)  alpha:1.0]];
         [self addViews];
     }
     return self;
@@ -22,21 +22,22 @@
 - (void)addViews {
     CGFloat padding = 8;
     
-    CGFloat cartButtonWidth = 40;
+    CGFloat cartButtonWidth = 30;
     CGFloat cartButtonHeight = cartButtonWidth;
-    CGFloat cartButtonX = padding;
+    CGFloat cartButtonX = padding * 2;
     CGFloat cartButtonY = (self.frame.size.height - cartButtonHeight) / 2;
-    _cartButton = [UIButton buttonWithType:UIButtonTypeSystem];
+    _cartButton = [UIButton buttonWithType:UIButtonTypeCustom];
     _cartButton.frame = CGRectMake(cartButtonX, cartButtonY, cartButtonWidth, cartButtonHeight);
-    [_cartButton setImage:[UIImage imageNamed:@"e_no_cart"] forState:UIControlStateNormal];
+    [_cartButton setImage:[UIImage imageNamed:@"cart"] forState:UIControlStateNormal];
+    [_cartButton setImage:[UIImage imageNamed:@"cart"] forState:UIControlStateDisabled];
     [_cartButton setTintColor:[UIColor whiteColor]];
     [_cartButton addTarget:self action:@selector(cartButtonClick:) forControlEvents:UIControlEventTouchUpInside];
     _cartButton.enabled = NO;
     [self addSubview:_cartButton];
     
     CGFloat cartNumberLabelWidth = 15;
-    CGFloat cartNumberLabelX = CGRectGetMaxX(self.cartButton.frame) - padding * 2;
-    CGFloat cartNumberLabelY = cartButtonY;
+    CGFloat cartNumberLabelX = CGRectGetMaxX(self.cartButton.frame) - padding * 2 + 3;
+    CGFloat cartNumberLabelY = cartButtonY - 2;
     _cartNumberLabel = [[UILabel alloc] initWithFrame:CGRectMake(cartNumberLabelX, cartNumberLabelY, cartNumberLabelWidth, cartNumberLabelWidth)];
     _cartNumberLabel.font = [UIFont systemFontOfSize:10.0];
     [_cartNumberLabel setBackgroundColor:[UIColor redColor]];
@@ -52,7 +53,7 @@
     CGFloat checkOutButtonX = self.frame.size.width - checkOutButtonWidth;
     _checkOutButton = [UIButton buttonWithType:UIButtonTypeSystem];
     _checkOutButton.frame = CGRectMake(checkOutButtonX, 0, checkOutButtonWidth, checkOutButtonHeight);
-    [_checkOutButton setBackgroundColor:[UIColor colorWithRed:(100.f / 255.f) green:(225.f / 255.f) blue:(100.f / 255.f) alpha:1.0]];
+    [_checkOutButton setBackgroundColor:[UIColor colorWithRed:(86.f / 255.f) green:(209.f / 255.f) blue:(100.f / 255.f) alpha:1.0]];
     [_checkOutButton setTitle:@"去结算" forState:UIControlStateNormal];
     _checkOutButton.titleLabel.font = [UIFont systemFontOfSize:20.0];
     [_checkOutButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];

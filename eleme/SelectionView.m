@@ -13,7 +13,9 @@
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
+        [self setBackgroundColor:[UIColor colorWithRed:(246.f / 255.f) green:(246.f / 255.f) blue:(246.f / 255.f) alpha:1.0]];
         [self setButtons];
+        self.breakfastListButton.selected = YES;
     }
     return  self;
 }
@@ -27,8 +29,9 @@
     _breakfastListButton.frame = CGRectMake(breakfastListButtonX, ButtonY, ButtonWidth, ButtonHeight);
     [_breakfastListButton setTitle:@"早餐" forState:UIControlStateNormal];
     [_breakfastListButton setTitle:@"早餐" forState:UIControlStateSelected];
-    [_breakfastListButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [_breakfastListButton setTitleColor:[UIColor blueColor] forState:UIControlStateSelected];
+    [_breakfastListButton setTitleColor:[UIColor colorWithRed:(102.f / 255.f) green:(102.f / 255.f) blue:(102.f / 255.f) alpha:1.0] forState:UIControlStateNormal];
+    [_breakfastListButton setTitleColor:[UIColor colorWithRed:(49.f / 255.f) green:(144.f / 255.f) blue:(232.f / 255.f) alpha:1.0] forState:UIControlStateSelected];
+    _breakfastListButton.titleLabel.font = [UIFont systemFontOfSize:16.0];
     [_breakfastListButton addTarget:self action:@selector(selectionButtonClick:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:_breakfastListButton];
     
@@ -37,8 +40,9 @@
     _launchListButton.frame = CGRectMake(launchListButtonX, ButtonY, ButtonWidth, ButtonHeight);
     [_launchListButton setTitle:@"午餐" forState:UIControlStateNormal];
     [_launchListButton setTitle:@"午餐" forState:UIControlStateSelected];
-    [_launchListButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [_launchListButton setTitleColor:[UIColor blueColor] forState:UIControlStateSelected];
+    [_launchListButton setTitleColor:[UIColor colorWithRed:(102.f / 255.f) green:(102.f / 255.f) blue:(102.f / 255.f) alpha:1.0] forState:UIControlStateNormal];
+    [_launchListButton setTitleColor:[UIColor colorWithRed:(49.f / 255.f) green:(144.f / 255.f) blue:(232.f / 255.f) alpha:1.0] forState:UIControlStateSelected];
+    _launchListButton.titleLabel.font = [UIFont systemFontOfSize:16.0];
     [_launchListButton addTarget:self action:@selector(selectionButtonClick:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:_launchListButton];
     
@@ -47,8 +51,9 @@
     _supperListButton.frame = CGRectMake(supperListButtonX, ButtonY, ButtonWidth, ButtonHeight);
     [_supperListButton setTitle:@"晚餐" forState:UIControlStateNormal];
     [_supperListButton setTitle:@"晚餐" forState:UIControlStateSelected];
-    [_supperListButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [_supperListButton setTitleColor:[UIColor blueColor] forState:UIControlStateSelected];
+    [_supperListButton setTitleColor:[UIColor colorWithRed:(102.f / 255.f) green:(102.f / 255.f) blue:(102.f / 255.f) alpha:1.0] forState:UIControlStateNormal];
+    [_supperListButton setTitleColor:[UIColor colorWithRed:(49.f / 255.f) green:(144.f / 255.f) blue:(232.f / 255.f) alpha:1.0] forState:UIControlStateSelected];
+    _supperListButton.titleLabel.font = [UIFont systemFontOfSize:16.0];
     [_supperListButton addTarget:self action:@selector(selectionButtonClick:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:_supperListButton];
     
@@ -57,16 +62,19 @@
     _midnightSnackListButton.frame = CGRectMake(midnightSnackListButtonX, ButtonY, ButtonWidth, ButtonHeight);
     [_midnightSnackListButton setTitle:@"夜餐" forState:UIControlStateNormal];
     [_midnightSnackListButton setTitle:@"夜餐" forState:UIControlStateSelected];
-    [_midnightSnackListButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [_midnightSnackListButton setTitleColor:[UIColor blueColor] forState:UIControlStateSelected];
+    [_midnightSnackListButton setTitleColor:[UIColor colorWithRed:(102.f / 255.f) green:(102.f / 255.f) blue:(102.f / 255.f) alpha:1.0] forState:UIControlStateNormal];
+    [_midnightSnackListButton setTitleColor:[UIColor colorWithRed:(49.f / 255.f) green:(144.f / 255.f) blue:(232.f / 255.f) alpha:1.0] forState:UIControlStateSelected];
+    _midnightSnackListButton.titleLabel.font = [UIFont systemFontOfSize:16.0];
     [_midnightSnackListButton addTarget:self action:@selector(selectionButtonClick:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:_midnightSnackListButton];
     
-    _indicatorBar = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(_breakfastListButton.frame), _breakfastListButton.frame.size.width, 2)];
-    _indicatorBar.backgroundColor = [UIColor blueColor];
-    [self addSubview:_indicatorBar];
+    _seperateLineView = [[UIView alloc] initWithFrame:CGRectMake(0, self.frame.size.height - 1, self.frame.size.width, 1)];
+    _seperateLineView.backgroundColor = [UIColor colorWithRed:(220.f / 255.f) green:(220.f / 255.f) blue:(220.f / 255.f) alpha:1.0];
+    [self addSubview:_seperateLineView];
     
-    _breakfastListButton.selected = YES;
+    _indicatorBar = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(_breakfastListButton.frame), _breakfastListButton.frame.size.width, 2)];
+    _indicatorBar.backgroundColor = [UIColor colorWithRed:(49.f / 255.f) green:(144.f / 255.f) blue:(232.f / 255.f) alpha:1.0];
+    [self addSubview:_indicatorBar];
 }
 
 - (void)selectionButtonClick:(UIButton *)button {
