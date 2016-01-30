@@ -32,6 +32,7 @@
 @property (nonatomic, strong) NSMutableArray *foodsInCartArray;
 @property (nonatomic, assign) BOOL isScrollToBottom;
 @property (nonatomic, assign) BOOL isCartShowing;
+@property (nonatomic, assign) BOOL isIndexClicked;
 @property (nonatomic, assign) double lastContentOffset;
 
 @end
@@ -136,7 +137,11 @@
     self.indexTableView.delegate = self;
     self.indexTableView.dataSource = self;
     self.indexTableView.backgroundColor = [UIColor colorWithRed:(238.f / 255.f) green:(238.f / 255.f) blue:(238.f / 255.f) alpha:1.0];
+    self.indexTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.indexTableView setTableFooterView:[[UIView alloc] init]];
+    UIView *seperateLineOnRightView = [[UIView alloc] initWithFrame:CGRectMake(indexTableViewWidth - 0.5, 0, 0.5, indexTableViewHeight)];
+    seperateLineOnRightView.backgroundColor = [UIColor colorWithRed:(215.f / 255.f) green:(215.f / 255.f) blue:(215.f / 255.f) alpha:1.0];
+    [self.indexTableView addSubview:seperateLineOnRightView];
     
     CGFloat foodTableViewWidth = self.view.frame.size.width - indexTableViewWidth;
     CGFloat foodTableViewHeight = indexTableViewHeight;
@@ -145,10 +150,9 @@
     self.foodTableView = [[UITableView alloc] initWithFrame:CGRectMake(foodTableViewX, foodTableViewY, foodTableViewWidth, foodTableViewHeight) style:UITableViewStylePlain];
     self.foodTableView.delegate = self;
     self.foodTableView.dataSource = self;
-    self.foodTableView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.foodTableView];
     
-    CGFloat cartListViewMaxHeight = 50 * 8 + 40;
+    CGFloat cartListViewMaxHeight = 50 * 7 + 40;
     CGFloat cartListViewY = self.view.frame.size.height - self.cartView.frame.size.height;
     self.cartListView = [[CartListView alloc] initWithFrame:CGRectMake(0, cartListViewY, self.view.frame.size.width, cartListViewMaxHeight)];
     self.cartListView.hidden = YES;
@@ -215,6 +219,9 @@
         IndexCell *cell = [tableView dequeueReusableCellWithIdentifier:indexTableViewCellIdentifier];
         if (cell == nil) {
             cell = [[IndexCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:indexTableViewCellIdentifier];
+            if (indexPath.row == 0) {
+                cell.seperateLineOnTopView.hidden = NO;
+            }
         }
         cell.nameLabel.text = self.indexArray[indexPath.row];
         return cell;
@@ -245,21 +252,20 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     NSIndexPath *index = [NSIndexPath indexPathForRow:0 inSection:indexPath.item];
     if (tableView == self.indexTableView) {
-        [self.foodTableView scrollToRowAtIndexPath:index atScrollPosition:UITableViewScrollPositionTop animated:NO];
-    } else {
-        [tableView deselectRowAtIndexPath:indexPath animated:YES];
+        self.isIndexClicked = YES;
+        [self.foodTableView scrollToRowAtIndexPath:index atScrollPosition:UITableViewScrollPositionTop animated:YES];
     }
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section {
-    if (tableView == self.foodTableView && self.isScrollToBottom == NO) {
+    if (tableView == self.foodTableView && self.isScrollToBottom == NO && self.isIndexClicked == NO) {
         NSIndexPath *index = [NSIndexPath indexPathForRow:section inSection:0];
         [self.indexTableView selectRowAtIndexPath:index animated:NO scrollPosition:UITableViewScrollPositionNone];
     }
 }
 
 - (void)tableView:(UITableView *)tableView didEndDisplayingHeaderView:(UIView *)view forSection:(NSInteger)section {
-    if (tableView == self.foodTableView && self.isScrollToBottom == YES) {
+    if (tableView == self.foodTableView && self.isScrollToBottom == YES && self.isIndexClicked == NO) {
         NSIndexPath *index = [NSIndexPath indexPathForRow:section + 1 inSection:0];
         [self.indexTableView selectRowAtIndexPath:index animated:NO scrollPosition:UITableViewScrollPositionNone];
     }
@@ -267,6 +273,7 @@
 
 #pragma mark - scrollViewDelegate
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
+    self.isIndexClicked = NO;
     self.lastContentOffset = scrollView.contentOffset.y;
 }
 
@@ -310,8 +317,8 @@
     [self.cartListView.cartListTableView reloadData];
     [self.foodTableView reloadData];
     CGFloat cartListViewHeight = self.foodsInCartArray.count * 50 + 40;
-    if (cartListViewHeight > 50 * 8 + 40) {
-        cartListViewHeight = 50 * 8 + 40;
+    if (cartListViewHeight > 50 * 7 + 40) {
+        cartListViewHeight = 50 * 7 + 40;
     }
     [UIView animateWithDuration:0.2 animations:^{
         self.cartListView.frame = CGRectMake(0, self.view.frame.size.height - self.cartView.frame.size.height - cartListViewHeight, self.cartView.frame.size.width, cartListViewHeight);
@@ -340,14 +347,14 @@
             [self.view bringSubviewToFront:self.cartListView];
             [self.view bringSubviewToFront:self.cartView];
             CGFloat cartListViewHeight = self.foodsInCartArray.count * 50 + 40;
-            if (cartListViewHeight > 50 * 8 + 40) {
-                cartListViewHeight = 50 * 8 + 40;
+            if (cartListViewHeight > 50 * 7 + 40) {
+                cartListViewHeight = 50 * 7 + 40;
             }
             self.cartListView.frame = CGRectMake(0, self.view.frame.size.height - self.cartView.frame.size.height, self.view.frame.size.width, cartListViewHeight);
             [UIView animateWithDuration:0.3 animations:^{
                 self.cartListView.hidden = NO;
                 self.cartListView.frame = CGRectMake(0, self.view.frame.size.height - self.cartView.frame.size.height - cartListViewHeight, self.cartView.frame.size.width, cartListViewHeight);
-                [self.backgroundView setBackgroundColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0.5]];
+                [self.backgroundView setBackgroundColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0.6]];
             }];
         }
     } else {
@@ -358,8 +365,8 @@
 - (void)backgroundClick:(UIControl *)sender {
     [UIView animateWithDuration:0.3 animations:^{
         CGFloat cartListViewHeight = self.foodsInCartArray.count * 50 + 40;
-        if (cartListViewHeight > 50 * 8 + 40) {
-            cartListViewHeight = 50 * 8 + 40;
+        if (cartListViewHeight > 50 * 7 + 40) {
+            cartListViewHeight = 50 * 7 + 40;
         }
         self.cartListView.frame = CGRectMake(0, self.view.frame.size.height - self.cartView.frame.size.height, self.cartView.frame.size.width, cartListViewHeight);
         [self.backgroundView setBackgroundColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0.0]];

@@ -30,16 +30,16 @@
     CGFloat foodNameLabelWidth =  self.contentView.frame.size.width;
     CGFloat foodNameLabelHeight = 30;
     CGFloat foodNameLabelX = CGRectGetMaxX(_foodImageView.frame) + padding;
-    CGFloat foodNameLabelY = (80 - foodNameLabelHeight) / 2;
+    CGFloat foodNameLabelY = foodImageViewY;
     _foodNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(foodNameLabelX, foodNameLabelY, foodNameLabelWidth, foodNameLabelHeight)];
     [_foodNameLabel setTextColor:[UIColor colorWithRed:(51.f / 255.f) green:(51.f / 255.f) blue:(51.f / 255.f) alpha:1.0]];
     _foodNameLabel.font = [UIFont systemFontOfSize:16.0];
     [self.contentView addSubview:_foodNameLabel];
     
-    CGFloat addFoodButtonWidth = 25;
+    CGFloat addFoodButtonWidth = 30;
     CGFloat addFoodButtonHeight = addFoodButtonWidth;
     CGFloat addFoodButtonX = [UIScreen mainScreen].bounds.size.width / 5 * 4 - addFoodButtonWidth - padding;
-    CGFloat addFoodButtonY = (80 - addFoodButtonHeight) / 2;
+    CGFloat addFoodButtonY = CGRectGetMaxY(_foodImageView.frame) - addFoodButtonHeight;
     _addFoodButton = [UIButton buttonWithType:UIButtonTypeCustom];
     _addFoodButton.frame = CGRectMake(addFoodButtonX, addFoodButtonY, addFoodButtonWidth, addFoodButtonHeight);
     [_addFoodButton setImage:[UIImage imageNamed:@"add_button"] forState:UIControlStateNormal];
@@ -74,7 +74,7 @@
         self.foodNumberLabel.text = [NSString stringWithFormat:@"%d", self.foodNumber];
         self.foodNumberLabel.hidden = NO;
         self.minusFoodButton.hidden = NO;
-        CGFloat minusFoodButtonWidth = 25;
+        CGFloat minusFoodButtonWidth = 30;
         CGFloat minusFoodButtonHeight = minusFoodButtonWidth;
         self.minusFoodButton.frame = CGRectMake(self.foodNumberLabel.frame.origin.x - minusFoodButtonWidth, self.addFoodButton.frame.origin.y, minusFoodButtonWidth, minusFoodButtonHeight);
     } else {
@@ -90,12 +90,10 @@
     if (self.foodNumber > 0) {
         self.foodNumberLabel.text = [NSString stringWithFormat:@"%d", self.foodNumber];
         self.foodNumberLabel.hidden = NO;
-        [UIView animateWithDuration:0.2 animations:^{
-            self.minusFoodButton.hidden = NO;
-            CGFloat minusFoodButtonWidth = 25;
-            CGFloat minusFoodButtonHeight = minusFoodButtonWidth;
-            self.minusFoodButton.frame = CGRectMake(self.foodNumberLabel.frame.origin.x - minusFoodButtonWidth, self.addFoodButton.frame.origin.y, minusFoodButtonWidth, minusFoodButtonHeight);
-        }];
+        self.minusFoodButton.hidden = NO;
+        CGFloat minusFoodButtonWidth = 30;
+        CGFloat minusFoodButtonHeight = minusFoodButtonWidth;
+        self.minusFoodButton.frame = CGRectMake(self.foodNumberLabel.frame.origin.x - minusFoodButtonWidth, self.addFoodButton.frame.origin.y, minusFoodButtonWidth, minusFoodButtonHeight);
     }
     if ([self.delegate respondsToSelector:@selector(addFood:)]) {
         [self.delegate addFood:self];
@@ -107,11 +105,8 @@
     self.foodNumberLabel.text = [NSString stringWithFormat:@"%d", self.foodNumber];
     if (self.foodNumber < 1) {
         self.foodNumberLabel.hidden = YES;
-        [UIView animateWithDuration:0.2 animations:^{
-            self.minusFoodButton.frame = self.addFoodButton.frame;
-        } completion:^(BOOL finished) {
-            self.minusFoodButton.hidden = YES;
-        }];
+        self.minusFoodButton.frame = self.addFoodButton.frame;
+        self.minusFoodButton.hidden = YES;
     }
     if ([self.delegate respondsToSelector:@selector(minusFood:)]) {
         [self.delegate minusFood:self];

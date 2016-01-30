@@ -12,5 +12,5 @@
 
 @property (nonatomic, strong) UILabel *nameLabel;
 @property (nonatomic, strong) UIView *indicatorView;
-
+@property (nonatomic, strong) UIView *seperateLineOnTopView;
 @end

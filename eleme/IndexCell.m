@@ -24,7 +24,7 @@
     CGFloat padding = 16;
     
     CGFloat indicatorViewHeight = 60;
-    _indicatorView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 2, indicatorViewHeight)];
+    _indicatorView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 4, indicatorViewHeight)];
     [_indicatorView setBackgroundColor:[UIColor colorWithRed:(49.f / 255.f) green:(144.f / 255.f) blue:(232.f / 255.f) alpha:1.0]];
     _indicatorView.hidden = YES;
     [self.contentView addSubview: _indicatorView];
@@ -38,6 +38,15 @@
     _nameLabel.font = [UIFont systemFontOfSize:14.0];
     [_nameLabel setTextColor:[UIColor colorWithRed:(102.f / 255.f) green:(102.f / 255.f) blue:(102.f / 255.f) alpha:1.0]];
     [self.contentView addSubview:_nameLabel];
+    
+    UIView *seperateLineView = [[UIView alloc] initWithFrame:CGRectMake(0, indicatorViewHeight - 0.5, [UIScreen mainScreen].bounds.size.width / 5, 0.5)];
+    [seperateLineView setBackgroundColor:[UIColor colorWithRed:(215.f / 255.f) green:(215.f / 255.f) blue:(215.f / 255.f) alpha:1.0]];
+    [self.contentView addSubview:seperateLineView];
+    
+    self.seperateLineOnTopView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width / 5, 0.5)];
+    [self.seperateLineOnTopView setBackgroundColor:[UIColor colorWithRed:(215.f / 255.f) green:(215.f / 255.f) blue:(215.f / 255.f) alpha:1.0]];
+    [self.contentView addSubview:self.seperateLineOnTopView];
+    self.seperateLineOnTopView.hidden = YES;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

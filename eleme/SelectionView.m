@@ -68,11 +68,11 @@
     [_midnightSnackListButton addTarget:self action:@selector(selectionButtonClick:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:_midnightSnackListButton];
     
-    _seperateLineView = [[UIView alloc] initWithFrame:CGRectMake(0, self.frame.size.height - 1, self.frame.size.width, 1)];
+    _seperateLineView = [[UIView alloc] initWithFrame:CGRectMake(0, self.frame.size.height - 0.5, self.frame.size.width, 0.5)];
     _seperateLineView.backgroundColor = [UIColor colorWithRed:(220.f / 255.f) green:(220.f / 255.f) blue:(220.f / 255.f) alpha:1.0];
     [self addSubview:_seperateLineView];
     
-    _indicatorBar = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(_breakfastListButton.frame), _breakfastListButton.frame.size.width, 2)];
+    _indicatorBar = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(_breakfastListButton.frame), _breakfastListButton.frame.size.width, 3)];
     _indicatorBar.backgroundColor = [UIColor colorWithRed:(49.f / 255.f) green:(144.f / 255.f) blue:(232.f / 255.f) alpha:1.0];
     [self addSubview:_indicatorBar];
 }

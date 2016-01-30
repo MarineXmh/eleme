@@ -81,11 +81,9 @@
     if (self.foodNumber > 0) {
         self.foodNumberLabel.text = [NSString stringWithFormat:@"%d", self.foodNumber];
         self.foodNumberLabel.hidden = NO;
-        [UIView animateWithDuration:0.2 animations:^{
-            self.minusFoodButton.hidden = NO;
-            CGFloat minusFoodButtonWidth = 25;
-            self.minusFoodButton.frame = CGRectMake(self.foodNumberLabel.frame.origin.x - minusFoodButtonWidth, self.addFoodButton.frame.origin.y, minusFoodButtonWidth, minusFoodButtonWidth);
-        }];
+        self.minusFoodButton.hidden = NO;
+        CGFloat minusFoodButtonWidth = 25;
+        self.minusFoodButton.frame = CGRectMake(self.foodNumberLabel.frame.origin.x - minusFoodButtonWidth, self.addFoodButton.frame.origin.y, minusFoodButtonWidth, minusFoodButtonWidth);
     }
     if ([self.delegate respondsToSelector:@selector(addFood:)]) {
         [self.delegate addFood:self];
@@ -97,11 +95,8 @@
     self.foodNumberLabel.text = [NSString stringWithFormat:@"%d", self.foodNumber];
     if (self.foodNumber < 1) {
         self.foodNumberLabel.hidden = YES;
-        [UIView animateWithDuration:0.2 animations:^{
-            self.minusFoodButton.frame = self.addFoodButton.frame;
-        } completion:^(BOOL finished) {
-            self.minusFoodButton.hidden = YES;
-        }];
+        self.minusFoodButton.frame = self.addFoodButton.frame;
+        self.minusFoodButton.hidden = YES;
     }
     if ([self.delegate respondsToSelector:@selector(minusFood:)]) {
         [self.delegate minusFood:self];
