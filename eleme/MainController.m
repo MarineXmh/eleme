@@ -66,15 +66,14 @@
     NSString *foodImagesPath = [NSString stringWithFormat:@"%@/FoodImages", documentPath];
     if (![type isEqualToString:@""]) {
         NSString *foodTypeListPath = [NSString stringWithFormat:@"%@/%@", foodImagesPath, [type substringToIndex:1]];
-        NSArray *foodTypeArray = [fm subpathsAtPath:foodTypeListPath];
+        NSArray *foodTypeArray = [fm contentsOfDirectoryAtPath:foodTypeListPath error:nil];
         for (NSString *data in foodTypeArray) {
-            NSString *index = [[data componentsSeparatedByString:@"/"] objectAtIndex:0];
-            if ([index isEqualToString:@".DS_Store"]) {
+            if ([data isEqualToString:@".DS_Store"]) {
                 continue;
             }
-            if (![self.indexArray containsObject:index]) {
-                [self.indexArray addObject:index];
-                NSArray *foodImagesArray = [fm subpathsAtPath:[NSString stringWithFormat:@"%@/%@", foodTypeListPath, index]];
+            if (![self.indexArray containsObject:data]) {
+                [self.indexArray addObject:data];
+                NSArray *foodImagesArray = [fm contentsOfDirectoryAtPath:[NSString stringWithFormat:@"%@/%@", foodTypeListPath, data] error:nil];
                 NSMutableArray *foodsArray = [[NSMutableArray alloc] init];
                 NSMutableArray *foodImagesPathArray = [[NSMutableArray alloc] init];
                 for (NSString *food in foodImagesArray) {
@@ -82,7 +81,7 @@
                         continue;
                     }
                     [foodsArray addObject:[[food componentsSeparatedByString:@"."] objectAtIndex:0]];
-                    NSString *foodImagePath = [NSString stringWithFormat:@"%@/%@/%@", foodTypeListPath, index, food];
+                    NSString *foodImagePath = [NSString stringWithFormat:@"%@/%@/%@", foodTypeListPath, data, food];
                     [foodImagesPathArray addObject:foodImagePath];
                 }
                 [self.foodsArray addObject:foodsArray];
@@ -92,8 +91,10 @@
     }
     [self.indexTableView reloadData];
     [self.foodTableView reloadData];
-    [self.indexTableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:NO scrollPosition:UITableViewScrollPositionTop];
-    [self.foodTableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:NO];
+    if (self.foodsArray.count > 0) {
+        [self.indexTableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:NO scrollPosition:UITableViewScrollPositionTop];
+        [self.foodTableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:NO];
+    }
 }
 
 - (void)setNavgationBar {
